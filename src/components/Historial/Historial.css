@@ -1,0 +1,42 @@
+.main__historial {
+    margin-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: .4rem;
+}
+.historial-cont {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+    width: 50%;
+}
+.main__historial-select {
+    width: 100%;
+    padding: .5rem;
+    border: .01rem solid #999;
+    outline: none;
+    border-radius: .3rem;
+}
+@media (max-width: 768px) {
+    .historial-cont {
+        width: 80%;
+    }
+}
+.montos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.montos img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.imgCont {
+    display: flex;
+    gap: .6rem;
+}

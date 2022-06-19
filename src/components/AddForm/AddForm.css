@@ -1,0 +1,91 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0009;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    animation: main;
+    animation-duration: .2s;
+}
+@keyframes main {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.main-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    width: 24rem;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: .5rem;
+    height: min-content;
+    position: relative;
+}
+.main__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+.main__form-inputCont {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+.input {
+    padding: .5rem;
+    border: .01rem solid #999;
+    border-radius: .3rem;
+    outline: none;
+}
+.main__form-select, .main__historial-select {
+    width: 100%;
+    padding: .5rem;
+    border: .01rem solid #999;
+    outline: none;
+    border-radius: .3rem;
+}
+.inputWrong {
+    border: .01rem solid #f00;
+    background-color: #f001;
+}
+.main__form-button, .main__form-buttonEdit {
+    padding: .5rem;
+    background-color: #78f;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: .3rem;
+    transition: background-color .2s;
+}
+.main__form-button:hover, .main__form-buttonEdit:hover {
+    background-color: #89f;
+}
+.closeModal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    margin: .2rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #000;
+}
+/* .display {
+    display: none;
+}
+.scrollLock{
+    overflow: hidden;
+} */
