@@ -1,12 +1,22 @@
-import React from 'react'
+import { useContext, useState, useEffect } from 'react'
+import { ModalContext } from '../../context/ModalContext';
+import editIMG from '../../assets/img/lapiz.png'
+import delIMG from '../../assets/img/borrar.png'
+import './HistorialItem.css'
 
-function HistorialItem({amount}) {
+function HistorialItem({ amount, deleteItem }) {
+  const { setId, modal, edit } = useContext(ModalContext);  
+
   return (
-    <div>
-        <div>
-            <p>{amount.detail} - {amount.type}</p>
-            <p>${amount.amount}</p>
-        </div>
+    <div className='item'>
+      <div className='itemText'>
+        <p>{amount.detail} - {amount.type}</p>
+        <p>${amount.amount}</p>
+      </div>
+      <div className='itemImg'>
+        <img src={editIMG} alt="" onClick={() => edit(amount.id)}/>
+        <img src={delIMG} alt="" onClick={() => deleteItem(amount.id)}/>
+      </div>
     </div>
   )
 }

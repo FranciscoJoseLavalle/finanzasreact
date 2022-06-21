@@ -5,8 +5,6 @@ h3 {
 }
 
 .header {
-    /* background-image: url(https://img-16.stickers.cloud/packs/f395d529-5ce3-4122-99fb-b04f321a0d7f/webp/1938ed15-fd76-4421-9d39-a1b7f72a078a.webp);
-    background-position: center center; */
     height: 5rem;     
 }
 
@@ -137,42 +135,9 @@ h3 {
 .nav-menu_visible {
     left: 0;
 }
-.burga {
-    display: flex;
-    flex-direction: column;
-    gap: .3rem;
-    position: relative;
-    height: 2.1rem;
-}
-@media (max-width: 530px) {
-    .burga {
-        height: 1.6rem;
-    }
-}
-.burgas {
-    height: .45rem;
-    width: 2.5rem;
-    background-color: #000;
-    transition: transform .3s;
-    border-radius: .2rem;
-}
-.burga0 {
-    position: absolute;
-    top: .8rem;
-    transform: rotate(45deg);
-}
-.burga1 {
-    opacity: 0;
-}
-.burga2 {
-    transform: rotate(-45deg);
-}
 
 @media (min-width: 768px) {
     .header {
         height: 8rem;
-    }
-    .burga {
-        display: none;
     }
 }

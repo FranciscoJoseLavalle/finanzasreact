@@ -1,7 +1,18 @@
 import React from 'react'
+import Burgas from '../Burgas/Burgas';
 import './NavBar.css';
 
 function NavBar() {
+    function openNav() {
+        const burgas = document.querySelectorAll('.burgas');
+        const navBar = document.getElementById("navBar");
+
+        burgas[0].classList.toggle('burga0')
+        burgas[1].classList.toggle('burga1')
+        burgas[2].classList.toggle('burga2')
+        navBar.classList.toggle("nav-menu_visible");
+    }
+
     return (
         <header className="header">
 
@@ -11,11 +22,7 @@ function NavBar() {
                     <h1 className="header__title">Finanzas personales</h1>
                     <button className="header__button" type="button">¡Empezá ya!</button>
 
-                    <div className="burga">
-                        <div className="burgas"></div>
-                        <div className="burgas"></div>
-                        <div className="burgas"></div>
-                    </div>
+                    <Burgas openNav={openNav} />
                 </div>
 
                 <nav className="header__navbar" id="navBar">

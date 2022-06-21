@@ -1,0 +1,13 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item img {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.itemImg {
+    display: flex;
+    gap: .7rem;
+}

@@ -8,17 +8,16 @@ import './Historial.css';
 import HistorialList from '../HistorialList/HistorialList';
 
 function Historial() {
-    const { modal, amounts, finalAmount } = useContext(ModalContext);
+    const { modal, setModal, amounts, finalAmount, setAmounts, setEditItem, editItem } = useContext(ModalContext);
 
-    // useEffect(() => {<
-    //     setIngresos(amounts.filter(el => el.type === 'Ingreso').map(element => parseFloat(element.amount)));
-    //     setEgresos(amounts.filter(el => el.type === 'Egreso').map(element => parseFloat(element.amount)));
-    //     setFinalAmount(ingresos.reduce((anterior, siguiente) => anterior + siguiente, 0) - egresos.reduce((anterior, siguiente) => anterior + siguiente, 0))
-    //     console.log(finalAmount);
-    // }, [amounts])>
-    
-    console.log(amounts);
-
+    function deleteItem(id) {
+        setAmounts(amounts.filter(el => el.id !== id))
+    }
+    // function edit(id) {
+    //     setModal(true);
+    //     setEditItem(true);
+    //     console.log(id)
+    // }
 
     return (
         <section className="main__historial">
@@ -32,7 +31,7 @@ function Historial() {
                 <h4 className="montoTotal">Monto final: ${finalAmount}</h4>
                 <div className="main__historial-cont">
                     { finalAmount === 0 ? <p>Aún no agregaste nada...</p> : <></> }
-                    <HistorialList amounts={amounts} />
+                    <HistorialList amounts={amounts} deleteItem={deleteItem}/>
                 </div>
             </div>
             {modal ? <AddForm /> : <></>}
@@ -42,4 +41,3 @@ function Historial() {
 }
 
 export default Historial;
-// setPrecioTotal(cartList.map(element => element.cantidad * element.precio).reduce((anterior, siguiente) => anterior + siguiente, 0))
