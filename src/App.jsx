@@ -11,6 +11,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Historial />} />
+          <Route path='/:type' element={<Historial />} />
 
           <Route path='/*' element={<Navigate to='/' replace />} />
         </Routes>

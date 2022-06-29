@@ -4,11 +4,12 @@ import { ModalContext } from '../../context/ModalContext';
 import './AddForm.css';
 
 function AddForm() {
-    const { setAmounts, amounts, setModal, setEditItem, editItem, id } = useContext(ModalContext);
+    const { setAmounts, amounts, setModal, editItem, id, amountWithoutFilter, setAmountWithoutFilter } = useContext(ModalContext);
 
     const [detail, setDetail] = useState('');
     const [amount, setAmount] = useState('');
     const [type, setType] = useState('nada');
+    const [date, setDate] = useState('');
 
     function closeModal() {
         setModal(false);
@@ -16,10 +17,11 @@ function AddForm() {
 
 
     class Montos {
-        constructor(detail, amount, type) {
+        constructor(detail, amount, type, date) {
             this.detail = detail;
             this.amount = amount;
             this.type = type;
+            this.date = date;
             this.id = Date.now();
         }
     }
@@ -31,6 +33,16 @@ function AddForm() {
         const detalleInput = document.querySelector('.inputDetalle');
         const select = document.querySelector('.main__form-select');
         const form = document.querySelector('.main__form');
+        
+        let fecha = new Date();
+        let day = fecha.getDate();
+        let month = fecha.getMonth();
+        let year = fecha.getFullYear();
+        let hour = fecha.getHours();
+        let minute = fecha.getMinutes();
+        let second = fecha.getSeconds();
+        
+        let textFecha = `${day}/${month + 1}/${year} a las ${hour}:${minute}:${second}`;
 
         if (amount < 0.01 || amount === '') {
             montoInput.classList.add('inputWrong');
@@ -48,10 +60,14 @@ function AddForm() {
             select.classList.remove('inputWrong');
         }
         if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada') {
-            let monto = new Montos(detail, amount, type);
+            let monto = new Montos(detail, amount, type, textFecha);
+            setAmountWithoutFilter([
+                ...setAmountWithoutFilter,
+                monto
+            ]);
             setAmounts([
                 ...amounts,
-                monto
+                amountWithoutFilter
             ]);
             form.reset();
         }
@@ -104,6 +120,9 @@ function AddForm() {
                     detalleInput.value = el.detail
                     montoInput.value = el.amount
                     select.value = el.type
+                    setDetail(detalleInput.value)
+                    setAmount(montoInput.value)
+                    setType(select.value)
                 }
             })
         } else {
