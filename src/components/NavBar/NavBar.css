@@ -47,11 +47,15 @@ h3 {
 }
 .header__cont {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
     width: 100%;
     position: relative;
     padding: .5rem;
+}
+@media (max-width: 768px) {
+    .header__cont {
+        align-items: center;
+    }
 }
 @media (max-width: 530px) {
     .header__title {
