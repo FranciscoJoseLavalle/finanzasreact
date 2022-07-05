@@ -61,13 +61,9 @@ function AddForm() {
         }
         if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada') {
             let monto = new Montos(detail, amount, type, textFecha);
-            setAmountWithoutFilter([
-                ...setAmountWithoutFilter,
-                monto
-            ]);
             setAmounts([
                 ...amounts,
-                amountWithoutFilter
+                monto
             ]);
             form.reset();
         }

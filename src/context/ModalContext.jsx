@@ -11,11 +11,13 @@ function ModalContextProvider({ children }) {
   const [egresos, setEgresos] = useState([]);
   const [id, setId] = useState(0);
   const [finalAmount, setFinalAmount] = useState(0);
+  const [showAmounts, setShowAmounts] = useState([]);
 
   useEffect(() => {
     setIngresos(amounts.filter(el => el.type === 'Ingreso').map(element => parseFloat(element.amount)));
     setEgresos(amounts.filter(el => el.type === 'Egreso').map(element => parseFloat(element.amount)));
     setFinalAmount(ingresos.reduce((anterior, siguiente) => anterior + siguiente, 0) - egresos.reduce((anterior, siguiente) => anterior + siguiente, 0))
+    setShowAmounts(amounts);
   },[amounts])
   useEffect(() => {
     setIngresos(amounts.filter(el => el.type === 'Ingreso').map(element => parseFloat(element.amount)));
@@ -36,7 +38,7 @@ function ModalContextProvider({ children }) {
   }
 
   return (
-    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter }}>
+    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts }}>
       {children}
     </ModalContext.Provider>
   )

@@ -1,6 +1,7 @@
 import React from 'react'
 import Burgas from '../Burgas/Burgas';
 import './NavBar.css';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
     function openNav() {
@@ -27,9 +28,15 @@ function NavBar() {
 
                 <nav className="header__navbar" id="navBar">
                     <ul className="header__ul">
-                        <a className="header__nav__item" href="/">Inicio</a>
-                        <a className="header__nav__item" href="./templates/presupuesto.html">Armá tu presupuesto</a>
-                        <a className="header__nav__item" href="#">¡Próximamente!</a>
+                        <li>
+                            <Link className="header__nav__item" to="/">Inicio</Link>
+                        </li>
+                        <li>
+                            <Link className="header__nav__item" to="/">Armá tu presupuesto</Link>
+                        </li>
+                        <li>
+                            <Link className="header__nav__item" to="/">¡Próximamente!</Link>
+                        </li>
                     </ul>
                 </nav>
 

@@ -2,10 +2,10 @@ import React from 'react'
 import HistorialItem from '../HistorialItem/HistorialItem';
 import './HistorialList.css';
 
-function HistorialList({ amounts, deleteItem }) {
+function HistorialList({ showAmounts, deleteItem }) {
     return (
         <div className='historialList'>
-            {amounts.map(amount => (<HistorialItem key={amount.id} amount={amount} deleteItem={deleteItem}/>))}
+            {showAmounts.map(amount => (<HistorialItem key={amount.id} amount={amount} deleteItem={deleteItem}/>))}
         </div>
     )
 }

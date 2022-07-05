@@ -83,13 +83,11 @@ h3 {
     .header__navbar {
         display: flex;
         width: 100%;
-        background: #333399;
+        background: #78f;
         position: fixed;
         left: 0;
         top: 5rem;
         width: 100%;
-    
-        height: calc(100% - 15rem);
         left: 100%;
         transition: all .3s;
     }
@@ -111,14 +109,16 @@ h3 {
 }
 
 .header__ul {
-    /* margin-top: 5rem; */
     display: flex;
     align-items: center;
-    justify-content: space-around;
     width: 100%;
-    gap: 1rem;
+    gap: 4rem;
+    justify-content: space-around;
+    padding: 2rem;
 }
-
+.header__ul li {
+    list-style: none;
+}
 .header__nav__item {
     color: #fff;
     text-transform: uppercase;

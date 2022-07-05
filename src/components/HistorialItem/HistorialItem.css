@@ -6,6 +6,11 @@
     padding: .6rem;
     border-radius: 1rem;
 }
+.itemText {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
 .item img {
     width: 1.8rem;
     height: 1.8rem;
