@@ -26,7 +26,7 @@ function Historial() {
     return (
         <section className="main__historial">
             <div className="historial-cont">
-                <h3>Historial</h3>
+                <h2>Historial</h2>
                 <HistorialSelect filterAmounts={filterAmounts}/>
                 <h4 className="montoTotal">Monto final: ${finalAmount}</h4>
                 <div className="main__historial-cont">

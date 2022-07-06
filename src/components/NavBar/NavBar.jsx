@@ -7,11 +7,13 @@ function NavBar() {
     function openNav() {
         const burgas = document.querySelectorAll('.burgas');
         const navBar = document.getElementById("navBar");
+        const body = document.querySelector('body');
 
-        burgas[0].classList.toggle('burga0')
-        burgas[1].classList.toggle('burga1')
-        burgas[2].classList.toggle('burga2')
+        burgas[0].classList.toggle('burga0');
+        burgas[1].classList.toggle('burga1');
+        burgas[2].classList.toggle('burga2');
         navBar.classList.toggle("nav-menu_visible");
+        body.classList.toggle('no-scroll');
     }
 
     return (
@@ -21,8 +23,6 @@ function NavBar() {
 
                 <div className="header__cont">
                     <h1 className="header__title">Finanzas personales</h1>
-                    <button className="header__button" type="button">¡Empezá ya!</button>
-
                     <Burgas openNav={openNav} />
                 </div>
 
@@ -32,8 +32,14 @@ function NavBar() {
                             <Link className="header__nav__item" to="/">Inicio</Link>
                         </li>
                         <li>
-                            <Link className="header__nav__item" to="/">Armá tu presupuesto</Link>
+                            <Link className="header__nav__item" to="/Presupuesto">Armá tu presupuesto</Link>
                         </li>
+                        <li>
+                            <Link className="header__nav__item" to="/Categorias">Categorías</Link>
+                        </li>
+                        {/* <li>
+                            <Link className="header__nav__item" to="/Presupuesto">Gráfico</Link>
+                        </li> */}
                         <li>
                             <Link className="header__nav__item" to="/">¡Próximamente!</Link>
                         </li>
