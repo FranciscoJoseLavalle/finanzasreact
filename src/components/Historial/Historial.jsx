@@ -15,7 +15,6 @@ function Historial() {
         setAmounts(amounts.filter(el => el.id !== id))
     }
     function filterAmounts(e) {
-        console.log(e.target.value);
         if (e.target.value !== 'nada') {
             setShowAmounts(amounts.filter(element => element.type === e.target.value))
         } else {
