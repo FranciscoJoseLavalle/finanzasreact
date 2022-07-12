@@ -24,7 +24,9 @@ function NavBar() {
             <div className="header__bg-color">
 
                 <div className="header__cont">
-                    <h1 className="header__title">Finanzas personales</h1>
+                    <Link to='/' className="header__title">
+                        <h1>Finanzas personales</h1>
+                    </Link>
                     <Burgas openNav={openNav} />
                 </div>
 

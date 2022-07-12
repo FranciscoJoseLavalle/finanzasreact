@@ -16,11 +16,14 @@
 }
 .categorias li {
     width: 40%;
-    height: 10rem;
+    height: 12rem;
     padding: .6rem;
     background-color: #eee;
     box-shadow: #777 0 0 11px 1px;
     border-radius: .5rem;
+}
+.categorias__img {
+    width: 3rem;
 }
 @media (max-width: 767px) {
     .categorias li {
