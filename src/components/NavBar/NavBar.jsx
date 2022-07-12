@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 function NavBar() {
     function openNav() {
         const burgas = document.querySelectorAll('.burgas');
+        const fondoNav = document.querySelector('.fondoNav');
         const navBar = document.getElementById("navBar");
         const body = document.querySelector('body');
 
@@ -13,6 +14,7 @@ function NavBar() {
         burgas[1].classList.toggle('burga1');
         burgas[2].classList.toggle('burga2');
         navBar.classList.toggle("nav-menu_visible");
+        fondoNav.classList.toggle('displayNav');
         body.classList.toggle('no-scroll');
     }
 
@@ -32,8 +34,11 @@ function NavBar() {
                             <Link className="header__nav__item" to="/">Inicio</Link>
                         </li>
                         <li>
-                            <Link className="header__nav__item" to="/Presupuesto">Armá tu presupuesto</Link>
+                            <Link className="header__nav__item" to="/Ciclos">Ciclos</Link>
                         </li>
+                        {/* <li>
+                            <Link className="header__nav__item" to="/Presupuesto">Armá tu presupuesto</Link>
+                        </li> */}
                         <li>
                             <Link className="header__nav__item" to="/Categorias">Categorías</Link>
                         </li>
@@ -45,8 +50,8 @@ function NavBar() {
                         </li>
                     </ul>
                 </nav>
-
             </div>
+            <div className='fondoNav' onClick={openNav}></div>
 
         </header>
     )

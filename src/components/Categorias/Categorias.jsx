@@ -3,8 +3,8 @@ import './Categorias.css';
 function Categorias() {
   return (
     <>
-      <h2>Categorías</h2>
-      <ul>
+      <h2 className='categorias__title'>Categorías</h2>
+      <ul className='categorias'>
         <li>
           <h3>Comida</h3>
           <p>Alimentación básica del individuo o grupo familiar.</p>

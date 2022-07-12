@@ -40,3 +40,17 @@
     display: flex;
     gap: .6rem;
 }
+.finalizarCiclo {
+    border: solid #f00 .01rem;
+    background-color: #fff;
+    padding: .5rem;
+    border-radius: .3rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #f00;
+    transition: .2s;
+}
+.finalizarCiclo:hover {
+    background-color: #f00;
+    color: #fff;
+}

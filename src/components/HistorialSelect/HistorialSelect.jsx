@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 function HistorialSelect({ filterAmounts }) {
     return (
         <select className="main__historial-select" onChange={filterAmounts}>

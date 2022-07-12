@@ -1,0 +1,29 @@
+.categorias__title {
+    text-align: center;
+    margin-top: 1rem;
+}
+.categorias {
+    list-style: none;
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+}
+.categorias li {
+    width: 40%;
+    height: 10rem;
+    padding: .6rem;
+    background-color: #eee;
+    box-shadow: #777 0 0 11px 1px;
+    border-radius: .5rem;
+}
+@media (max-width: 767px) {
+    .categorias li {
+        width: 100%;
+    }
+}

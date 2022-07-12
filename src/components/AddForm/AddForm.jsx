@@ -9,7 +9,6 @@ function AddForm() {
     const [detail, setDetail] = useState('');
     const [amount, setAmount] = useState('');
     const [type, setType] = useState('nada');
-    const [date, setDate] = useState('');
 
     function closeModal() {
         setModal(false);
@@ -66,6 +65,9 @@ function AddForm() {
                 monto
             ]);
             form.reset();
+            setDetail('');
+            setAmount('');
+            setType('nada');
         }
     }
 

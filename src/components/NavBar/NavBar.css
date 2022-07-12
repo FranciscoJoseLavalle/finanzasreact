@@ -3,13 +3,11 @@ h3 {
     font-weight: 600;
     margin: .5rem 0;
 }
-
 .header {
     height: 5rem;
-}
-
-.header__bg-color {
     background: #78f;
+}
+.header__bg-color {
     width: 100%;
     height: 100%;
 
@@ -52,7 +50,7 @@ h3 {
     position: relative;
     padding: .5rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .header__cont {
         align-items: center;
     }
@@ -88,10 +86,10 @@ h3 {
     align-items: center;
     width: 100%;
     gap: 4rem;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding: 2rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .header__navbar {
         display: none;
         width: 100%;
@@ -102,6 +100,7 @@ h3 {
         width: 70%;
         height: calc(100% - 5rem);
         transition: all .3s;
+        z-index: 3;
     }
     .toggle-button {
         display: block;
@@ -169,4 +168,16 @@ h3 {
     .header {
         height: 8rem;
     }
+}
+.fondoNav {
+    position: absolute;
+    background-color: #0005;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    display: none;
+    transition: .4s;
+}
+.displayNav {
+    display: block;
 }

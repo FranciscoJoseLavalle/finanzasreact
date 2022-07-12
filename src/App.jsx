@@ -2,6 +2,7 @@ import './App.css';
 import Historial from './components/Historial/Historial';
 import Presupuesto from './components/Presupuesto/Presupuesto';
 import Categorias from './components/Categorias/Categorias';
+import Ciclos from './components/Ciclos/Ciclos';
 import NavBar from './components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ModalContextProvider from './context/ModalContext';
@@ -15,6 +16,7 @@ function App() {
           <Route path='/' element={<Historial />} />
           <Route path='/presupuesto' element={<Presupuesto />} />
           <Route path='/categorias' element={<Categorias />} />
+          <Route path='/ciclos' element={<Ciclos />} />
 
           <Route path='/*' element={<Navigate to='/' replace />} />
         </Routes>

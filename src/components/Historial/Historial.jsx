@@ -27,6 +27,7 @@ function Historial() {
             <div className="historial-cont">
                 <h2>Historial</h2>
                 <HistorialSelect filterAmounts={filterAmounts}/>
+            <button className='finalizarCiclo'>Finalizar ciclo</button>
                 <h4 className="montoTotal">Monto final: ${finalAmount}</h4>
                 <div className="main__historial-cont">
                     { finalAmount === 0 ? <p>Aún no agregaste nada...</p> : <></> }
