@@ -12,7 +12,7 @@ function HistorialItem({ amount, deleteItem }) {
       <div className='itemText'>
         <p>{amount.detail} - {amount.type}</p>
         <p>${amount.amount}</p>
-        <p>{amount.date}</p>
+        <small>{amount.date}</small>
       </div>
       <div className='itemImg'>
         <img src={editIMG} alt="" onClick={() => edit(amount.id)}/>

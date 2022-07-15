@@ -11,7 +11,10 @@ function CiclosIndividuales() {
     return (
         <>
             <Link to='/ciclos'>Volver a ciclos</Link>
-            <ul className='ciclosContainer'>{ciclos.filter(ciclo => ciclo.id == showCiclo)[0].elementos.map(elemento => <li>{elemento.detail} {elemento.type} <small>{elemento.amount}</small></li>)}</ul>
+            <ul className='ciclosContainer'>{ciclos.filter(ciclo => ciclo.id == showCiclo)[0].elementos.map(elemento => <li>
+                <p>{elemento.detail} - {elemento.type}</p>
+                <p>${elemento.amount}</p>
+                <small>{elemento.date}</small></li>)}</ul>
         </>
     )
 }
