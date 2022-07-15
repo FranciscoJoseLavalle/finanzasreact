@@ -6,6 +6,7 @@ import Ciclos from './components/Ciclos/Ciclos';
 import NavBar from './components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ModalContextProvider from './context/ModalContext';
+import CiclosIndividuales from './components/CiclosIndividuales/CiclosIndividuales';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/presupuesto' element={<Presupuesto />} />
           <Route path='/categorias' element={<Categorias />} />
           <Route path='/ciclos' element={<Ciclos />} />
+          <Route path='/ciclos/:showCiclo' element={<CiclosIndividuales />} />
 
           <Route path='/*' element={<Navigate to='/' replace />} />
         </Routes>

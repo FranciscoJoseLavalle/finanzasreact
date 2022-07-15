@@ -1,0 +1,16 @@
+.ciclosContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    align-items: center;
+    list-style: none;
+}
+.ciclosContainer li {
+    box-shadow: #999 0 0 10px 1px;
+    border-radius: .3rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    background-color: #eee;
+}

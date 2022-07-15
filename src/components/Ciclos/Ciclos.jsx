@@ -1,14 +1,12 @@
+import { useContext } from 'react';
+import { ModalContext } from '../../context/ModalContext';
+
 import CiclosList from '../CiclosList/CiclosList';
 import './Ciclos.css';
 
 function Ciclos() {
-    let ciclos = [
-        {nombre: "ciclo", fecha: "marzo"},
-        {nombre: "ciclo", fecha: "marzo"},
-        {nombre: "ciclo", fecha: "marzo"},
-        {nombre: "ciclo", fecha: "marzo"},
-        {nombre: "ciclo", fecha: "marzo"}
-    ]
+    const { ciclos } = useContext(ModalContext);
+    
     return (
         <>
             <h2 className='ciclos__title'>Ciclos</h2>

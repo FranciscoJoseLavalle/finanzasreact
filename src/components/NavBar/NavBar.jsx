@@ -36,13 +36,13 @@ function NavBar() {
                             <Link className="header__nav__item" to="/">Inicio</Link>
                         </li>
                         <li>
-                            <Link className="header__nav__item" to="/Ciclos">Ciclos</Link>
+                            <Link className="header__nav__item" to="/ciclos">Ciclos</Link>
                         </li>
                         {/* <li>
                             <Link className="header__nav__item" to="/Presupuesto">Armá tu presupuesto</Link>
                         </li> */}
                         <li>
-                            <Link className="header__nav__item" to="/Categorias">Categorías</Link>
+                            <Link className="header__nav__item" to="/categorias">Categorías</Link>
                         </li>
                         {/* <li>
                             <Link className="header__nav__item" to="/Presupuesto">Gráfico</Link>

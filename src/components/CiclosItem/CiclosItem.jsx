@@ -1,11 +1,12 @@
 import './CiclosItem.css';
+import { Link } from 'react-router-dom';
 
-function CiclosItem({nombre, fecha}) {
+function CiclosItem({ ciclo }) {
     return (
-        <div className='ciclos__item'>
-            <h3>{nombre}</h3>
-            <p>{fecha}</p>
-        </div>
+        <Link className='ciclos__item' to={`/ciclos/${ciclo.id}`}>
+            <h3>Nombre del ciclo</h3>
+            <small>Fecha del ciclo</small>
+        </Link>
     )
 }
 
