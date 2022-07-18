@@ -14,6 +14,7 @@ function ModalContextProvider({ children }) {
   const [showAmounts, setShowAmounts] = useState([]);
   const [ciclos, setCiclos] = useState([]);
   const [cicloNombre, setCicloNombre] = useState('');
+  const [nombreCiclo, setNombreCiclo] = useState(false);
 
   useEffect(() => {
     setIngresos(amounts.filter(el => el.type === 'Ingreso').map(element => parseFloat(element.amount)));
@@ -40,12 +41,22 @@ function ModalContextProvider({ children }) {
   }
 
   function guardarCiclo() {
-    setCiclos([...ciclos, {id: Date.now(), name: cicloNombre, elementos: amounts}])
-    setAmounts([])
+    let fecha = new Date();
+    let day = fecha.getDate();
+    let month = fecha.getMonth();
+    let year = fecha.getFullYear();
+    let hour = fecha.getHours();
+    let minute = fecha.getMinutes();
+    let second = fecha.getSeconds();
+    
+    let textFecha = `${day}/${month + 1}/${year} a las ${hour}:${minute}:${second}`;
+    setCiclos([...ciclos, {id: Date.now(), name: cicloNombre, fecha: textFecha, elementos: amounts}]);
+    setAmounts([]);
+    setNombreCiclo(false);
   }
 
   return (
-    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts, guardarCiclo, ciclos, setCicloNombre }}>
+    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts, guardarCiclo, ciclos, setCicloNombre, nombreCiclo, setNombreCiclo }}>
       {children}
     </ModalContext.Provider>
   )

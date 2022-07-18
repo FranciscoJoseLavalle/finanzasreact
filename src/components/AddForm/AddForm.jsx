@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { ModalContext } from '../../context/ModalContext';
+import SelectCategoria from '../SelectCategoria/SelectCategoria';
 
 import './AddForm.css';
 
@@ -9,6 +10,7 @@ function AddForm() {
     const [detail, setDetail] = useState('');
     const [amount, setAmount] = useState('');
     const [type, setType] = useState('nada');
+    const [categoria, setCategoria] = useState('nada');
 
     function closeModal() {
         setModal(false);
@@ -16,11 +18,12 @@ function AddForm() {
 
 
     class Montos {
-        constructor(detail, amount, type, date) {
+        constructor(detail, amount, type, date, categoria) {
             this.detail = detail;
             this.amount = amount;
             this.type = type;
             this.date = date;
+            this.categoria = categoria;
             this.id = Date.now();
         }
     }
@@ -43,11 +46,8 @@ function AddForm() {
         
         let textFecha = `${day}/${month + 1}/${year} a las ${hour}:${minute}:${second}`;
 
-        if (amount < 0.01 || amount === '') {
-            montoInput.classList.add('inputWrong');
-        } else {
-            montoInput.classList.remove('inputWrong');
-        }
+        amount < 0.01 || amount === '' ? montoInput.classList.add('inputWrong') : montoInput.classList.remove('inputWrong');
+        
         if (/^\s/.test(detail) || detail === '') {
             detalleInput.classList.add('inputWrong');
         } else {
@@ -59,7 +59,7 @@ function AddForm() {
             select.classList.remove('inputWrong');
         }
         if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada') {
-            let monto = new Montos(detail, amount, type, textFecha);
+            let monto = new Montos(detail, amount, type, textFecha, categoria);
             setAmounts([
                 ...amounts,
                 monto
@@ -108,6 +108,12 @@ function AddForm() {
     }
 
     useEffect(() => {
+        if (type == 'nada' || type == 'Ingreso') {
+            setCategoria('nada');
+        }
+    }, [type])
+
+    useEffect(() => {
         const detalleInput = document.querySelector('.inputDetalle');
         const montoInput = document.querySelector('.inputMonto');
         const select = document.querySelector('.main__form-select');
@@ -130,7 +136,6 @@ function AddForm() {
         }
     }, [editItem])
 
-
     return (
         <main className="main display">
             <div className="main-cont">
@@ -144,13 +149,19 @@ function AddForm() {
                         <label htmlFor="monto">Ingresa un monto</label>
                         <input type="number" placeholder="Monto" className="inputMonto input" onChange={(e) => setAmount(e.target.value)} />
                     </div>
-                    <div className="main__form-selectCont main__form-cont">
-                        <select className="main__form-select" onChange={(e) => setType(e.target.value)} >
+                    <div className="main__form-selectCont main__form-cont main__form-inputCont">
+                        <label htmlFor="type">Seleccione el tipo</label>
+                        <select className="main__form-select" id='type' onChange={(e) => setType(e.target.value)} >
                             <option value="nada">Ingresa un tipo</option>
                             <option value="Ingreso">Ingreso</option>
                             <option value="Egreso">Egreso</option>
                         </select>
                     </div>
+                    {
+                        type == 'Egreso' ?
+                        <SelectCategoria setCategoria={setCategoria} /> :
+                        <></>
+                    }
                     {
                         editItem
                             ?

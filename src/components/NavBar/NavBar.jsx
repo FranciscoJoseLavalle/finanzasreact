@@ -44,9 +44,9 @@ function NavBar() {
                         <li>
                             <Link className="header__nav__item" to="/categorias">Categorías</Link>
                         </li>
-                        {/* <li>
-                            <Link className="header__nav__item" to="/Presupuesto">Gráfico</Link>
-                        </li> */}
+                        <li>
+                            <Link className="header__nav__item" to="/grafico">Gráfico</Link>
+                        </li>
                         <li>
                             <Link className="header__nav__item" to="/">¡Próximamente!</Link>
                         </li>

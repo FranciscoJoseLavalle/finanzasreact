@@ -9,8 +9,8 @@ import HistorialList from '../HistorialList/HistorialList';
 import HistorialSelect from '../HistorialSelect/HistorialSelect';
 
 function Historial() {
-    const { modal, amounts, finalAmount, setAmounts, showAmounts, setShowAmounts, guardarCiclo, setCicloNombre } = useContext(ModalContext);
-    const [nombreCiclo, setNombreCiclo] = useState(false);
+    const { modal, amounts, finalAmount, setAmounts, showAmounts, setShowAmounts, guardarCiclo, setCicloNombre, nombreCiclo, setNombreCiclo } = useContext(ModalContext);
+
 
     function deleteItem(id) {
         setAmounts(amounts.filter(el => el.id !== id))
@@ -30,8 +30,11 @@ function Historial() {
                 <HistorialSelect filterAmounts={filterAmounts} />
                 <button className='finalizarCiclo' onClick={() => setNombreCiclo(true)}>Finalizar ciclo</button>
                 {nombreCiclo ?
-                    <div>
-                        <input type='text' onChange={(e) => setCicloNombre(e.target.value)}/>
+                    <div className='nombreCiclo-cont'>
+                        <div>
+                            <label htmlFor="cicloNombre">Nombre del ciclo</label>
+                            <input type='text' id='cicloNombre' onChange={(e) => setCicloNombre(e.target.value)} placeholder='Nombre del ciclo' />
+                        </div>
                         <button onClick={guardarCiclo}>Guardar ciclo</button>
                     </div>
                     :

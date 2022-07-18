@@ -5,7 +5,7 @@ function CiclosItem({ ciclo }) {
     return (
         <Link className='ciclos__item' to={`/ciclos/${ciclo.id}`}>
             <h3>{ciclo.name}</h3>
-            <small>Fecha del ciclo</small>
+            <small>{ciclo.fecha}</small>
         </Link>
     )
 }

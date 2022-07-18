@@ -10,8 +10,13 @@ function CiclosIndividuales() {
     const { ciclos } = useContext(ModalContext);
     return (
         <>
-            <Link to='/ciclos'>Volver a ciclos</Link>
-            <ul className='ciclosContainer'>{ciclos.filter(ciclo => ciclo.id == showCiclo)[0].elementos.map(elemento => <li>
+            <Link to='/ciclos' className='volver'>Volver a ciclos</Link>
+            <h3 className='cicloName'>{ciclos.map(ciclo => {
+                if (ciclo.id == showCiclo) {
+                    return ciclo.name;
+                }
+            })}</h3>
+            <ul className='ciclosContainer'>{ciclos.filter(ciclo => ciclo.id == showCiclo)[0].elementos.map(elemento => <li key={showCiclo}>
                 <p>{elemento.detail} - {elemento.type}</p>
                 <p>${elemento.amount}</p>
                 <small>{elemento.date}</small></li>)}</ul>
@@ -19,6 +24,4 @@ function CiclosIndividuales() {
     )
 }
 
-export default CiclosIndividuales
-
-// ciclo.elementos.map(elemento => <li>{elemento.detail} {elemento.type} <small>{elemento.amount}</small></li>)
+export default CiclosIndividuales;

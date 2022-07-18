@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ModalContextProvider from './context/ModalContext';
 import CiclosIndividuales from './components/CiclosIndividuales/CiclosIndividuales';
+import Grafico from './components/Grafico/Grafico';
 
 function App() {
   return (
@@ -15,10 +16,11 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Historial />} />
-          <Route path='/presupuesto' element={<Presupuesto />} />
-          <Route path='/categorias' element={<Categorias />} />
           <Route path='/ciclos' element={<Ciclos />} />
           <Route path='/ciclos/:showCiclo' element={<CiclosIndividuales />} />
+          <Route path='/categorias' element={<Categorias />} />
+          <Route path='/grafico' element={<Grafico />} />
+          <Route path='/presupuesto' element={<Presupuesto />} />
 
           <Route path='/*' element={<Navigate to='/' replace />} />
         </Routes>

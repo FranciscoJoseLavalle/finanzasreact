@@ -6,7 +6,7 @@ function CiclosList({ciclos}) {
     return (
         <>
             <div className='ciclos'>
-                { ciclos.map(ciclo => <CiclosItem ciclo={ciclo}/>) }
+                { ciclos.map(ciclo => <CiclosItem ciclo={ciclo} key={ciclo.id}/>) }
             </div>
         </>
     )

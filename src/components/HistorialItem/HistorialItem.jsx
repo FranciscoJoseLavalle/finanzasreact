@@ -6,11 +6,12 @@ import './HistorialItem.css'
 
 function HistorialItem({ amount, deleteItem }) {
   const { edit } = useContext(ModalContext);
-
+  
   return (
     <div className='item'>
       <div className='itemText'>
         <p>{amount.detail} - {amount.type}</p>
+        <p>{amount.categoria}</p>
         <p>${amount.amount}</p>
         <small>{amount.date}</small>
       </div>

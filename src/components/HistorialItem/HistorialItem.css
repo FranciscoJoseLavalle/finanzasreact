@@ -20,3 +20,16 @@
     display: flex;
     gap: .7rem;
 }
+.item:last-child {
+    animation-name: historial;
+    animation-duration: 1.5s;
+}
+
+@keyframes historial {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
