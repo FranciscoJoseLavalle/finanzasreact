@@ -9,12 +9,28 @@ function Grafico() {
     const { amounts } = useContext(ModalContext);
     console.log(amounts);
 
-    let amountsEgresos = amounts.filter(amount => amount.type == 'Egreso').map(amount => parseFloat(amount.amount));
+    let test = [];
+    amounts.forEach(amount => {
+        if (amount.type == 'Egreso') {
+            if (test.some(element => element.type == amount.categoria)) {
+                test.forEach(element => {
+                    if (element.type == amount.categoria) {
+                        element.price += parseFloat(amount.amount);
+                    }
+                })
+            } else {
+                test.push({id: amount.id, type: amount.categoria, price: parseFloat(amount.amount)})
+            }
+        }
+    })
 
-    let amountsCategorias = amounts.filter(amount => amount.type == 'Egreso').map(amount => amount.categoria);
+    let amountsCategorias = [];
+    let amountsEgresos = [];
 
-    console.log(amountsEgresos);
-    console.log(amountsCategorias);
+    for (let i = 0; i < test.length; i++) {
+        amountsCategorias.push(test[i].type)
+        amountsEgresos.push(test[i].price)
+    }
 
     return (
         <>

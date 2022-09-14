@@ -10,7 +10,7 @@ function AddForm() {
     const [detail, setDetail] = useState('');
     const [amount, setAmount] = useState('');
     const [type, setType] = useState('nada');
-    const [categoria, setCategoria] = useState('nada');
+    const [categoria, setCategoria] = useState('-');
 
     function closeModal() {
         setModal(false);
@@ -109,7 +109,7 @@ function AddForm() {
 
     useEffect(() => {
         if (type == 'nada' || type == 'Ingreso') {
-            setCategoria('nada');
+            setCategoria('-');
         }
     }, [type])
 
