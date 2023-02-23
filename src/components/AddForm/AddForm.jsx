@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useContext, useEffect } from 'react';
 import { ModalContext } from '../../context/ModalContext';
 import SelectCategoria from '../SelectCategoria/SelectCategoria';
@@ -5,7 +6,7 @@ import SelectCategoria from '../SelectCategoria/SelectCategoria';
 import './AddForm.css';
 
 function AddForm() {
-    const { setAmounts, amounts, setModal, editItem, id, amountWithoutFilter, setAmountWithoutFilter } = useContext(ModalContext);
+    const { setAmounts, amounts, setModal, editItem, id, amountWithoutFilter, setAmountWithoutFilter, user, getMovements, setLoading, movimientos } = useContext(ModalContext);
 
     const [detail, setDetail] = useState('');
     const [amount, setAmount] = useState('');
@@ -16,18 +17,6 @@ function AddForm() {
         setModal(false);
     }
 
-
-    class Montos {
-        constructor(detail, amount, type, date, categoria) {
-            this.detail = detail;
-            this.amount = amount;
-            this.type = type;
-            this.date = date;
-            this.categoria = categoria;
-            this.id = Date.now();
-        }
-    }
-
     function add(e) {
         e.preventDefault();
 
@@ -35,19 +24,9 @@ function AddForm() {
         const detalleInput = document.querySelector('.inputDetalle');
         const select = document.querySelector('.main__form-select');
         const form = document.querySelector('.main__form');
-        
-        let fecha = new Date();
-        let day = fecha.getDate();
-        let month = fecha.getMonth();
-        let year = fecha.getFullYear();
-        let hour = fecha.getHours();
-        let minute = fecha.getMinutes();
-        let second = fecha.getSeconds();
-        
-        let textFecha = `${day}/${month + 1}/${year} a las ${hour}:${minute}:${second}`;
 
         amount < 0.01 || amount === '' ? montoInput.classList.add('inputWrong') : montoInput.classList.remove('inputWrong');
-        
+
         if (/^\s/.test(detail) || detail === '') {
             detalleInput.classList.add('inputWrong');
         } else {
@@ -59,11 +38,21 @@ function AddForm() {
             select.classList.remove('inputWrong');
         }
         if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada') {
-            let monto = new Montos(detail, amount, type, textFecha, categoria);
-            setAmounts([
-                ...amounts,
-                monto
-            ]);
+            setLoading(true);
+            let movement = {
+                detail,
+                amount,
+                type,
+                date: Date.now(),
+                categoria
+            }
+            const token = document.cookie.replace('token=', '')
+            axios.post(`http://localhost:8080/movements/${user.movimientos}`, { token, movement })
+                .then(res => {
+                    console.log(res)
+                    setLoading(false);
+                    getMovements();
+                })
             form.reset();
             setDetail('');
             setAmount('');
@@ -95,8 +84,24 @@ function AddForm() {
             select.classList.remove('inputWrong');
         }
         if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada') {
-            amounts.forEach(el => {
-                if (el.id === id) {
+            setLoading(true);
+            movimientos.forEach(el => {
+                if (el.date === id) {
+                    let movement = {
+                        detail: detail,
+                        amount: amount,
+                        type: type,
+                        date: el.date,
+                        categoria: el.categoria
+                    }
+
+                    const token = document.cookie.replace('token=', '')
+                    axios.put(`http://localhost:8080/movements/${user.movimientos}`, { token, movement })
+                        .then(res => {
+                            console.log(res)
+                            setLoading(false);
+                            getMovements();
+                        })
                     el.detail = detail;
                     el.amount = amount;
                     el.type = type;
@@ -119,8 +124,8 @@ function AddForm() {
         const select = document.querySelector('.main__form-select');
 
         if (editItem) {
-            amounts.forEach(el => {
-                if (el.id === id) {
+            movimientos.forEach(el => {
+                if (el.date === id) {
                     detalleInput.value = el.detail
                     montoInput.value = el.amount
                     select.value = el.type
@@ -159,8 +164,8 @@ function AddForm() {
                     </div>
                     {
                         type == 'Egreso' ?
-                        <SelectCategoria setCategoria={setCategoria} /> :
-                        <></>
+                            <SelectCategoria setCategoria={setCategoria} /> :
+                            <></>
                     }
                     {
                         editItem

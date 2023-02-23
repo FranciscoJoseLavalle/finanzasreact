@@ -6,7 +6,7 @@ import './HistorialItem.css'
 
 function HistorialItem({ amount, deleteItem }) {
   const { edit } = useContext(ModalContext);
-  
+
   return (
     <div className='item'>
       <div className='itemText'>
@@ -16,8 +16,8 @@ function HistorialItem({ amount, deleteItem }) {
         <small>{amount.date}</small>
       </div>
       <div className='itemImg'>
-        <img src={editIMG} alt="" onClick={() => edit(amount.id)}/>
-        <img src={delIMG} alt="" onClick={() => deleteItem(amount.id)}/>
+        <img src={editIMG} alt="" onClick={() => edit(amount.date)} />
+        <img src={delIMG} alt="" onClick={() => deleteItem(amount.date)} />
       </div>
     </div>
   )

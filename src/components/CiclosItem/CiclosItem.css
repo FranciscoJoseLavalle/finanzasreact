@@ -1,6 +1,7 @@
 .ciclos__item {
-    background-color: #eee;
-    box-shadow: #777 0 0 11px 1px;
+    background-color: #fff;
+    box-shadow: #ccc 0 0 15px;
+    color: #333;
     padding: .6rem;
-    border-radius: .5rem;
+    border-radius: .35rem;
 }

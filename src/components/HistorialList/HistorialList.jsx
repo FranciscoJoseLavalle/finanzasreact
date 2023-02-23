@@ -5,7 +5,7 @@ import './HistorialList.css';
 function HistorialList({ showAmounts, deleteItem }) {
     return (
         <div className='historialList'>
-            {showAmounts.map(amount => (<HistorialItem key={amount.id} amount={amount} deleteItem={deleteItem}/>))}
+            {showAmounts.map(amount => (<HistorialItem key={amount.date} amount={amount} deleteItem={deleteItem} />))}
         </div>
     )
 }

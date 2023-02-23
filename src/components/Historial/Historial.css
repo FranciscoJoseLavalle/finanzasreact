@@ -19,6 +19,7 @@
     padding: .5rem;
     border: .01rem solid #999;
     outline: none;
+    background-color: #fff;
     border-radius: .3rem;
 }
 @media (max-width: 768px) {

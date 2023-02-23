@@ -18,9 +18,10 @@
     width: 40%;
     height: 12.5rem;
     padding: .6rem;
-    background-color: #eee;
-    box-shadow: #777 0 0 11px 1px;
-    border-radius: .5rem;
+    background-color: #fff;
+    box-shadow: #ccc 0 0 15px;
+    border-radius: .35rem;
+    color: #222;
 }
 .categorias__img {
     width: 3rem;
