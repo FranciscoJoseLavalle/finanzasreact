@@ -1,5 +1,6 @@
 .historialList {
     display: flex;
     flex-direction: column-reverse;
+    margin-bottom: 5rem;
     gap: 1.3rem;
 }

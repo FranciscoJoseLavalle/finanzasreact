@@ -23,7 +23,7 @@ function AddForm() {
         const montoInput = document.querySelector('.inputMonto');
         const detalleInput = document.querySelector('.inputDetalle');
         const select = document.querySelector('.main__form-select');
-        const form = document.querySelector('.main__form');
+        const form = document.querySelector('.addForm');
 
         amount < 0.01 || amount === '' ? montoInput.classList.add('inputWrong') : montoInput.classList.remove('inputWrong');
 
@@ -47,7 +47,7 @@ function AddForm() {
                 categoria
             }
             const token = document.cookie.replace('token=', '')
-            axios.post(`http://localhost:8080/movements/${user.movimientos}`, { token, movement })
+            axios.post(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}`, { token, movement })
                 .then(res => {
                     console.log(res)
                     setLoading(false);
@@ -66,7 +66,7 @@ function AddForm() {
         const montoInput = document.querySelector('.inputMonto');
         const detalleInput = document.querySelector('.inputDetalle');
         const select = document.querySelector('.main__form-select');
-        const form = document.querySelector('.main__form');
+        const form = document.querySelector('.addForm');
 
         if (amount < 0.01 || amount === '') {
             montoInput.classList.add('inputWrong');
@@ -96,7 +96,7 @@ function AddForm() {
                     }
 
                     const token = document.cookie.replace('token=', '')
-                    axios.put(`http://localhost:8080/movements/${user.movimientos}`, { token, movement })
+                    axios.put(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}`, { token, movement })
                         .then(res => {
                             console.log(res)
                             setLoading(false);
@@ -145,7 +145,14 @@ function AddForm() {
         <main className="main display">
             <div className="main-cont">
                 <button className="closeModal" onClick={closeModal}>x</button>
-                <form className="main__form">
+                <form className="addForm">
+                    {
+                        editItem
+                            ?
+                            <h2>Editar</h2>
+                            :
+                            <h2>Agregar</h2>
+                    }
                     <div className="main__form-inputCont main__form-cont">
                         <label htmlFor="monto">Ingresa un detalle</label>
                         <input type="text" placeholder="Detalle" className="inputDetalle input" maxLength="15" onChange={(e) => setDetail(e.target.value)} />

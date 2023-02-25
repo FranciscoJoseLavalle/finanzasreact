@@ -21,27 +21,6 @@ function ModalContextProvider({ children }) {
   const [movimientos, setMovimientos] = useState([])
   const [loading, setLoading] = useState(false)
 
-  // useEffect(() => {
-  //   setIngresos(amounts.filter(el => el.type === 'Ingreso').map(element => parseFloat(element.amount)));
-  //   setEgresos(amounts.filter(el => el.type === 'Egreso').map(element => parseFloat(element.amount)));
-  //   setFinalAmount(ingresos.reduce((anterior, siguiente) => anterior + siguiente, 0) - egresos.reduce((anterior, siguiente) => anterior + siguiente, 0))
-  //   setShowAmounts(amounts);
-  //   localStorage.setItem('ciclos', JSON.stringify(ciclos));
-  //   localStorage.setItem('amounts', JSON.stringify(amounts));
-  // }, [amounts])
-  // useEffect(() => {
-  //   setIngresos(amounts.filter(el => el.type === 'Ingreso').map(element => parseFloat(element.amount)));
-  //   setEgresos(amounts.filter(el => el.type === 'Egreso').map(element => parseFloat(element.amount)));
-  //   setFinalAmount(ingresos.reduce((anterior, siguiente) => anterior + siguiente, 0) - egresos.reduce((anterior, siguiente) => anterior + siguiente, 0))
-  // }, [editItem])
-  // useEffect(() => {
-  //   setFinalAmount(ingresos.reduce((anterior, siguiente) => anterior + siguiente, 0) - egresos.reduce((anterior, siguiente) => anterior + siguiente, 0))
-  // }, [ingresos])
-  // useEffect(() => {
-  //   setFinalAmount(ingresos.reduce((anterior, siguiente) => anterior + siguiente, 0) - egresos.reduce((anterior, siguiente) => anterior + siguiente, 0))
-  // }, [egresos])
-
-
   function edit(id) {
     setId(id)
     setModal(true);
@@ -50,7 +29,7 @@ function ModalContextProvider({ children }) {
 
   function getUser() {
     const token = document.cookie.replace('token=', '')
-    axios.post("http://localhost:8080/pruebaDatos", { token })
+    axios.post("https://military-polished-hoof.glitch.me/pruebaDatos", { token })
       .then(res => {
         if (res.data.status === 'error') {
           return null
@@ -63,7 +42,7 @@ function ModalContextProvider({ children }) {
   }
 
   function getMovements() {
-    axios.get(`http://localhost:8080/movements/${user.movimientos}`,)
+    axios.get(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}`,)
       .then(res => {
         if (res.data.status === 'success') {
           setLoading(false);
@@ -99,15 +78,26 @@ function ModalContextProvider({ children }) {
     let second = fecha.getSeconds();
 
     let textFecha = `${day}/${month + 1}/${year} a las ${hour}:${minute}:${second}`;
-    setCiclos([...ciclos, { id: Date.now(), name: cicloNombre, fecha: textFecha, elementos: amounts }]);
+    setCiclos([...ciclos, { id: Date.now(), name: cicloNombre, fecha: textFecha, elementos: movimientos }]);
     console.log(ciclos);
     setAmounts([]);
     setNombreCiclo(false);
     localStorage.setItem('ciclos', JSON.stringify(ciclos));
   }
 
+  function logout() {
+    axios.post("https://military-polished-hoof.glitch.me/api/sessions/logout")
+      .then(res => {
+        if (res.data.status === "success") {
+          document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+          setIsLogged(false);
+        }
+      })
+      .catch(console.log)
+  }
+
   return (
-    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts, guardarCiclo, ciclos, setCicloNombre, nombreCiclo, setNombreCiclo, setIsLogged, isLogged, user, setUser, getUser, getMovements, movimientos, setMovimientos, loading, setLoading, getFinalAmount }}>
+    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts, guardarCiclo, ciclos, setCicloNombre, nombreCiclo, setNombreCiclo, setIsLogged, isLogged, user, setUser, getUser, getMovements, movimientos, setMovimientos, loading, setLoading, getFinalAmount, logout }}>
       {children}
     </ModalContext.Provider>
   )

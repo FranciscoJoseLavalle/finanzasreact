@@ -16,13 +16,13 @@ function Historial() {
     function deleteItem(id) {
         setLoading(true);
         const token = document.cookie.replace('token=', '')
-        axios.delete(`http://localhost:8080/movements/${user.movimientos}`, { data: { token, id: id } }, {
+        axios.delete(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}`, { data: { token, id: id } }, {
 
         })
             .then(res => {
                 if (res.data.status === 'success') {
-                    setLoading(false);
                     getMovements(res.data.payload.movimiento)
+                    setLoading(false);
                     // setMovimientos();
                 }
                 console.log(res);
@@ -33,7 +33,7 @@ function Historial() {
         setLoading(true);
         if (e.target.value !== 'nada') {
             console.log(e.target.value);
-            axios.get(`http://localhost:8080/movements/${user.movimientos}/${e.target.value}`)
+            axios.get(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}/${e.target.value}`)
                 .then(res => {
                     if (res.data.status === 'success') {
                         console.log(res.data.payload);
@@ -52,7 +52,7 @@ function Historial() {
     useEffect(() => {
         setLoading(true);
         const token = document.cookie.replace('token=', '')
-        axios.post("http://localhost:8080/pruebaDatos", { token })
+        axios.post("https://military-polished-hoof.glitch.me/pruebaDatos", { token })
             .then(res => {
                 if (res.data.status === 'success') {
                     getMovements2(res.data.payload.movimientos);
@@ -64,7 +64,7 @@ function Historial() {
     }, [])
 
     const getMovements2 = (mid) => {
-        axios.get(`http://localhost:8080/movements/${mid}`,)
+        axios.get(`https://military-polished-hoof.glitch.me/movements/${mid}`,)
             .then(res => {
                 if (res.data.status === 'success') {
                     setLoading(false);
@@ -92,7 +92,7 @@ function Historial() {
                     </div>
                     :
                     <></>}
-                <h4 className="montoTotal">Monto final: ${finalAmount}</h4>
+                <h4 className="montoTotal">Monto final: $ {parseFloat(finalAmount).toLocaleString()}</h4>
                 <div className="main__historial-cont">
                     {
                         loading

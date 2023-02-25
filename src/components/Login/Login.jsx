@@ -3,32 +3,70 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { ModalContext } from '../../context/ModalContext';
 import { Link } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
 function Login() {
-    const { setIsLogged, isLogged, getUser, setUser, user } = useContext(ModalContext);
+    const { setIsLogged, isLogged, getUser, setUser, user, setLoading, loading } = useContext(ModalContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     function formSubmit(e) {
         e.preventDefault();
-        let params = {
-            "email": email,
-            "password": password
+        setLoading(true);
+        const emailInput = document.querySelector('#email');
+        const passwordInput = document.querySelector('#password');
+
+        // EMAIL VALIDATION
+        if (/^\s/.test(email) || email === '') {
+            emailInput.classList.add('inputWrong');
+        } else {
+            emailInput.classList.remove('inputWrong');
         }
-        axios.post("http://localhost:8080/api/sessions/login", params)
-            .then(res => {
-                document.cookie = `token=${res.data.payload}; max-age=${60 * 5}; path=/; samesite=strict`
-                setIsLogged(true);
-                getUser();
-            })
-            .catch(console.log)
+        // EMAIL VALIDATION
+
+        // PASSWORD VALIDATION
+        if (/^\s/.test(password) || password === '') {
+            passwordInput.classList.add('inputWrong');
+        } else {
+            passwordInput.classList.remove('inputWrong');
+        }
+        // PASSWORD VALIDATION
+
+        if (email !== '' && !(/^\s/.test(email)) && password !== '' && !(/^\s/.test(password))) {
+
+            setLoading(true);
+            let params = {
+                "email": email,
+                "password": password
+            }
+            axios.post("https://military-polished-hoof.glitch.me/api/sessions/login", params)
+                .then(res => {
+                    console.log(res);
+                    if (res.data.status === "success") {
+                        document.cookie = `token=${res.data.payload}; max-age=${60 * 24}; path=/; samesite=strict`
+                        setIsLogged(true);
+                        getUser();
+                    }
+                    setLoading(false);
+                })
+                .catch(res => {
+                    console.log(res);
+                    if (res.response.data.status === 'error') {
+                        setLoading(false);
+                        setEmail('')
+                        setPassword('')
+                    }
+                })
+        } else {
+            setLoading(false);
+        }
     }
 
     const probarDatos = (e) => {
         e.preventDefault();
         const token = document.cookie.replace('token=', '')
-        axios.post("http://localhost:8080/pruebaDatos", { token })
+        axios.post("https://military-polished-hoof.glitch.me/pruebaDatos", { token })
             .then(res => {
                 console.log(res);
             })
@@ -36,19 +74,24 @@ function Login() {
     }
 
     return (
-        <form className="form" onSubmit={(e) => formSubmit(e)}>
-            <h2>Iniciar sesión</h2>
-            <div>
-                <label htmlFor="email">Correo electrónico</label>
-                <input type="text" placeholder='Email' id='email' onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="password">Contraseña</label>
-                <input type="text" placeholder='Contraseña' id='password' onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <button>Iniciar sesión</button>
-            <p>¿No estás registrado? <Link to='/register' className='link'>¡Regístrate!</Link></p>
-        </form>
+        <>
+            {loading
+                ? <Loader />
+                : <form className="form" onSubmit={(e) => formSubmit(e)}>
+                    <h2>Iniciar sesión</h2>
+                    <div>
+                        <label htmlFor="email">Correo electrónico</label>
+                        <input type="email" placeholder='Email' id='email' onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Contraseña</label>
+                        <input type="password" placeholder='Contraseña' id='password' onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <button>Iniciar sesión</button>
+                    <p>¿No estás registrado? <Link to='/register' className='link'>¡Regístrate!</Link></p>
+                </form>
+            }
+        </>
     )
 }
 

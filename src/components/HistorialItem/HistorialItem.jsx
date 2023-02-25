@@ -3,6 +3,7 @@ import { ModalContext } from '../../context/ModalContext';
 import editIMG from '../../assets/img/lapiz.png'
 import delIMG from '../../assets/img/borrar.png'
 import './HistorialItem.css'
+import moment from 'moment';
 
 function HistorialItem({ amount, deleteItem }) {
   const { edit } = useContext(ModalContext);
@@ -10,10 +11,13 @@ function HistorialItem({ amount, deleteItem }) {
   return (
     <div className='item'>
       <div className='itemText'>
-        <p>{amount.detail} - {amount.type}</p>
+        <p><b>{amount.detail}</b> - {amount.type}</p>
         <p>{amount.categoria}</p>
-        <p>${amount.amount}</p>
-        <small>{amount.date}</small>
+        <p style={{
+          color: amount.type === "Ingreso" ? "green" : "#222",
+          fontWeight: 600
+        }}>$ {parseFloat(amount.amount).toLocaleString()}</p>
+        <small>{moment(amount.date).format('DD/MM/YYYY h:mm:ss')}</small>
       </div>
       <div className='itemImg'>
         <img src={editIMG} alt="" onClick={() => edit(amount.date)} />

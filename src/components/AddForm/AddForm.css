@@ -10,14 +10,17 @@
     animation: main;
     animation-duration: .2s;
 }
+
 @keyframes main {
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
 }
+
 .main-cont {
     display: flex;
     flex-direction: column;
@@ -26,51 +29,13 @@
     margin: 2rem 0;
     width: 24rem;
     background-color: #fff;
+    box-shadow: #222 0 0 15px;
     padding: 2rem;
     border-radius: .5rem;
     height: min-content;
     position: relative;
 }
-.main__form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-}
-.main__form-inputCont {
-    display: flex;
-    flex-direction: column;
-    gap: .3rem;
-}
-.input {
-    padding: .5rem;
-    border: .01rem solid #999;
-    border-radius: .3rem;
-    outline: none;
-}
-.main__form-select, .main__historial-select, .selectCategoria {
-    width: 100%;
-    padding: .5rem;
-    border: .01rem solid #999;
-    outline: none;
-    border-radius: .3rem;
-}
-.inputWrong {
-    border: .01rem solid #f00;
-    background-color: #f001;
-}
-.main__form-button, .main__form-buttonEdit {
-    padding: .5rem;
-    background-color: #78f;
-    border: none;
-    color: #fff;
-    text-transform: uppercase;
-    border-radius: .3rem;
-    transition: background-color .2s;
-}
-.main__form-button:hover, .main__form-buttonEdit:hover {
-    background-color: #89f;
-}
+
 .closeModal {
     position: absolute;
     top: 0;
@@ -83,9 +48,61 @@
     width: 1.5rem;
     color: #000;
 }
+
 /* .display {
     display: none;
 }
 .scrollLock{
     overflow: hidden;
 } */
+.addForm {
+    background-color: #fff;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+    gap: 1rem;
+    border-radius: .35rem;
+}
+
+.addForm div {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.addForm input,
+.addForm select {
+    padding: .5rem;
+    border: #78f .12rem solid;
+    border-radius: .35rem;
+    outline: none;
+}
+
+.addForm input:focus,
+.addForm select:focus {
+}
+
+.addForm button {
+    padding: .5rem;
+    color: #78f;
+    border: #78f .12rem solid;
+    border-radius: .35rem;
+    background-color: transparent;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.addForm button:hover {
+    color: #fff;
+    background-color: #78f;
+}
+
+.addForm .inputWrong, .form .inputWrong {
+    border: .01rem solid #f00;
+    background-color: #f001;
+}
+.addForm .inputWrong:focus, .form .inputWrong:focus {
+    outline: #f00 .13rem solid;
+    box-shadow: #f00 0 0 10px;
+}

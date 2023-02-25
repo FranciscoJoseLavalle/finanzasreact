@@ -6,11 +6,11 @@ import { Chart as ChartJS } from 'chart.js/auto';
 import './Grafico.css';
 
 function Grafico() {
-    const { amounts } = useContext(ModalContext);
-    console.log(amounts);
+    const { movimientos } = useContext(ModalContext);
+    console.log(movimientos);
 
     let test = [];
-    amounts.forEach(amount => {
+    movimientos.forEach(amount => {
         if (amount.type == 'Egreso') {
             if (test.some(element => element.type == amount.categoria)) {
                 test.forEach(element => {
@@ -33,7 +33,8 @@ function Grafico() {
     }
 
     return (
-        <>
+        <main>  
+            <h2>Gráfico</h2>
             <Pie
                 data={{
                     labels: amountsCategorias,
@@ -64,7 +65,7 @@ function Grafico() {
                 height={10000}
                 width={10000}
             />
-        </>
+        </main>
     )
 }
 

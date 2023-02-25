@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ModalContext } from '../../context/ModalContext';
 import Burgas from '../Burgas/Burgas';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
 
 function NavBar() {
+    const { modal, amounts, finalAmount, setAmounts, showAmounts, setShowAmounts, guardarCiclo, setCicloNombre, nombreCiclo, setNombreCiclo, setMovimientos, movimientos, user, loading, setLoading, getFinalAmount, getMovements, logout } = useContext(ModalContext);
+
     function openNav() {
         const burgas = document.querySelectorAll('.burgas');
         const fondoNav = document.querySelector('.fondoNav');
@@ -25,7 +28,7 @@ function NavBar() {
 
                 <div className="header__cont">
                     <Link to='/' className="header__title">
-                        <h1>Finanzas personales</h1>
+                        <h1>Finanzas <span>personales</span></h1>
                     </Link>
                     <Burgas openNav={openNav} />
                 </div>
@@ -48,7 +51,7 @@ function NavBar() {
                             <Link className="header__nav__item" to="/grafico">Gráfico</Link>
                         </li>
                         <li>
-                            <Link className="header__nav__item" to="/">¡Próximamente!</Link>
+                            <p className="header__nav__item" onClick={logout}>Cerrar sesión</p>
                         </li>
                     </ul>
                 </nav>
