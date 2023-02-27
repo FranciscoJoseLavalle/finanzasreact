@@ -13,12 +13,21 @@ function NavBar() {
         const navBar = document.getElementById("navBar");
         const body = document.querySelector('body');
 
-        burgas[0].classList.toggle('burga0');
-        burgas[1].classList.toggle('burga1');
-        burgas[2].classList.toggle('burga2');
-        navBar.classList.toggle("nav-menu_visible");
-        fondoNav.classList.toggle('displayNav');
-        body.classList.toggle('no-scroll');
+        if (window.innerWidth <= 840) {
+            burgas[0].classList.toggle('burga0');
+            burgas[1].classList.toggle('burga1');
+            burgas[2].classList.toggle('burga2');
+            navBar.classList.toggle("nav-menu_visible");
+            fondoNav.classList.toggle('displayNav');
+            body.classList.toggle('no-scroll');
+        } else {
+            burgas[0].classList.remove('burga0');
+            burgas[1].classList.remove('burga1');
+            burgas[2].classList.remove('burga2');
+            navBar.classList.remove("nav-menu_visible");
+            fondoNav.classList.remove('displayNav');
+            body.classList.remove('no-scroll');
+        }
     }
 
     return (
@@ -36,22 +45,27 @@ function NavBar() {
                 <nav className="header__navbar" id="navBar">
                     <ul className="header__ul">
                         <li>
-                            <Link className="header__nav__item" to="/">Inicio</Link>
+                            <Link className="header__nav__item" onClick={openNav} to="/">Inicio</Link>
                         </li>
                         <li>
-                            <Link className="header__nav__item" to="/ciclos">Ciclos</Link>
+                            <Link className="header__nav__item" onClick={openNav} to="/ciclos">Ciclos</Link>
                         </li>
                         {/* <li>
-                            <Link className="header__nav__item" to="/Presupuesto">Armá tu presupuesto</Link>
+                            <Link className="header__nav__item" onClick={openNav} to="/Presupuesto">Armá tu presupuesto</Link>
                         </li> */}
                         <li>
-                            <Link className="header__nav__item" to="/categorias">Categorías</Link>
+                            <Link className="header__nav__item" onClick={openNav} to="/categorias">Categorías</Link>
                         </li>
                         <li>
-                            <Link className="header__nav__item" to="/grafico">Gráfico</Link>
+                            <Link className="header__nav__item" onClick={openNav} to="/grafico">Gráfico</Link>
                         </li>
                         <li>
-                            <p className="header__nav__item" onClick={logout}>Cerrar sesión</p>
+                            <p className="header__nav__item"
+                                onClick={() => {
+                                    logout()
+                                    openNav()
+                                }}
+                            >Cerrar sesión</p>
                         </li>
                     </ul>
                 </nav>

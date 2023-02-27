@@ -16,7 +16,7 @@ function Historial() {
     function deleteItem(id) {
         setLoading(true);
         const token = document.cookie.replace('token=', '')
-        axios.delete(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}`, { data: { token, id: id } }, {
+        axios.delete(`http://localhost:8080/movements/${user.movimientos}`, { data: { token, id: id } }, {
 
         })
             .then(res => {
@@ -33,7 +33,7 @@ function Historial() {
         setLoading(true);
         if (e.target.value !== 'nada') {
             console.log(e.target.value);
-            axios.get(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}/${e.target.value}`)
+            axios.get(`http://localhost:8080/movements/${user.movimientos}/${e.target.value}`)
                 .then(res => {
                     if (res.data.status === 'success') {
                         console.log(res.data.payload);
@@ -52,7 +52,7 @@ function Historial() {
     useEffect(() => {
         setLoading(true);
         const token = document.cookie.replace('token=', '')
-        axios.post("https://military-polished-hoof.glitch.me/pruebaDatos", { token })
+        axios.post("http://localhost:8080/pruebaDatos", { token })
             .then(res => {
                 if (res.data.status === 'success') {
                     getMovements2(res.data.payload.movimientos);
@@ -64,7 +64,7 @@ function Historial() {
     }, [])
 
     const getMovements2 = (mid) => {
-        axios.get(`https://military-polished-hoof.glitch.me/movements/${mid}`,)
+        axios.get(`http://localhost:8080/movements/${mid}`,)
             .then(res => {
                 if (res.data.status === 'success') {
                     setLoading(false);
@@ -80,7 +80,9 @@ function Historial() {
         <section className="main__historial">
             <div className="historial-cont">
                 <h2>Historial</h2>
-                <HistorialSelect filterAmounts={filterAmounts} />
+                {/* <input type="text" placeholder='Buscar...' onChange={filterAmounts}/> */}
+                <HistorialSelect filterAmounts={filterAmounts} type="type" />
+                <HistorialSelect filterAmounts={filterAmounts} type="cathegory" />
                 <button className='finalizarCiclo' onClick={() => setNombreCiclo(true)}>Finalizar ciclo</button>
                 {nombreCiclo ?
                     <div className='nombreCiclo-cont'>

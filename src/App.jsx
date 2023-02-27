@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     setLoading(true);
     const token = document.cookie.replace('token=', '')
-    axios.post("https://military-polished-hoof.glitch.me/pruebaDatos", { token })
+    axios.post("http://localhost:8080/pruebaDatos", { token })
       .then(res => {
         if (res.data.status === 'error') {
           setLoading(false);

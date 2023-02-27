@@ -28,7 +28,7 @@
     transform: rotate(-45deg);
 }
 
-@media (min-width: 840px) {
+@media (min-width: 841px) {
     .burga {
         display: none;
     }

@@ -40,7 +40,7 @@ function Login() {
                 "email": email,
                 "password": password
             }
-            axios.post("https://military-polished-hoof.glitch.me/api/sessions/login", params)
+            axios.post("http://localhost:8080/api/sessions/login", params)
                 .then(res => {
                     console.log(res);
                     if (res.data.status === "success") {
@@ -66,7 +66,7 @@ function Login() {
     const probarDatos = (e) => {
         e.preventDefault();
         const token = document.cookie.replace('token=', '')
-        axios.post("https://military-polished-hoof.glitch.me/pruebaDatos", { token })
+        axios.post("http://localhost:8080/pruebaDatos", { token })
             .then(res => {
                 console.log(res);
             })

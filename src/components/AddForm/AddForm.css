@@ -81,6 +81,8 @@
 
 .addForm input:focus,
 .addForm select:focus {
+    outline: #78f .13rem solid;
+    box-shadow: #78f 0 0 10px;
 }
 
 .addForm button {

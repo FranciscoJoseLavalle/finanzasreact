@@ -29,7 +29,7 @@ function ModalContextProvider({ children }) {
 
   function getUser() {
     const token = document.cookie.replace('token=', '')
-    axios.post("https://military-polished-hoof.glitch.me/pruebaDatos", { token })
+    axios.post("http://localhost:8080/pruebaDatos", { token })
       .then(res => {
         if (res.data.status === 'error') {
           return null
@@ -42,7 +42,7 @@ function ModalContextProvider({ children }) {
   }
 
   function getMovements() {
-    axios.get(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}`,)
+    axios.get(`http://localhost:8080/movements/${user.movimientos}`,)
       .then(res => {
         if (res.data.status === 'success') {
           setLoading(false);
@@ -86,7 +86,7 @@ function ModalContextProvider({ children }) {
   }
 
   function logout() {
-    axios.post("https://military-polished-hoof.glitch.me/api/sessions/logout")
+    axios.post("http://localhost:8080/api/sessions/logout")
       .then(res => {
         if (res.data.status === "success") {
           document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";

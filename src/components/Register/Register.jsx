@@ -69,7 +69,7 @@ function Register() {
                 "email": email,
                 "password": password
             })
-            axios.post("https://military-polished-hoof.glitch.me/api/sessions/register", params, {
+            axios.post("http://localhost:8080/api/sessions/register", params, {
                 "headers": {
                     'Content-Type': 'application/json'
                 }

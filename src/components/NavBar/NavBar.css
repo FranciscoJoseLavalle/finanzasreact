@@ -88,8 +88,8 @@ h3 {
     .header__navbar {
         display: none;
         width: 100%;
-        background: #000c;
-        backdrop-filter: blur(.4rem);
+        background: #000d;
+        backdrop-filter: blur(.12rem);
         position: absolute;
         top: 102px;
         left: 100%;

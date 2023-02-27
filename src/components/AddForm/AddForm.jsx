@@ -47,7 +47,7 @@ function AddForm() {
                 categoria
             }
             const token = document.cookie.replace('token=', '')
-            axios.post(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}`, { token, movement })
+            axios.post(`http://localhost:8080/movements/${user.movimientos}`, { token, movement })
                 .then(res => {
                     console.log(res)
                     setLoading(false);
@@ -57,6 +57,7 @@ function AddForm() {
             setDetail('');
             setAmount('');
             setType('nada');
+            setModal(false);
         }
     }
 
@@ -96,7 +97,7 @@ function AddForm() {
                     }
 
                     const token = document.cookie.replace('token=', '')
-                    axios.put(`https://military-polished-hoof.glitch.me/movements/${user.movimientos}`, { token, movement })
+                    axios.put(`http://localhost:8080/movements/${user.movimientos}`, { token, movement })
                         .then(res => {
                             console.log(res)
                             setLoading(false);

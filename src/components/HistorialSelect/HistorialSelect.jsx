@@ -1,9 +1,16 @@
-function HistorialSelect({ filterAmounts }) {
+import CategoriasSelect from "../CategoriasSelect/CategoriasSelect";
+
+function HistorialSelect({ filterAmounts, type }) {
     return (
         <select className="main__historial-select" onChange={filterAmounts}>
-            <option value="nada">Ver por todos</option>
-            <option value="Ingreso">Ingresos</option>
-            <option value="Egreso">Egresos</option>
+            {type === 'type' ?
+                <>
+                    <option value="nada">Ver por todos</option>
+                    <option value="Ingreso">Ingresos</option>
+                    <option value="Egreso">Egresos</option>
+                </>
+                : <CategoriasSelect textDefault="Filtrar por categoría" />
+            }
         </select>
     )
 }
