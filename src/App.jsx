@@ -32,7 +32,6 @@ function App() {
           setIsLogged(true);
           setUser(res.data.payload)
         }
-        console.log(res);
       })
       .catch(console.log);
   }, [])

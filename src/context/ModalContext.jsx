@@ -8,12 +8,10 @@ function ModalContextProvider({ children }) {
   const [editItem, setEditItem] = useState(false);
   const [amounts, setAmounts] = useState(JSON.parse(localStorage.getItem('amounts')) || []);
   const [amountWithoutFilter, setAmountWithoutFilter] = useState([]);
-  const [ingresos, setIngresos] = useState([]);
-  const [egresos, setEgresos] = useState([]);
   const [id, setId] = useState(0);
   const [finalAmount, setFinalAmount] = useState(0);
   const [showAmounts, setShowAmounts] = useState([]);
-  const [ciclos, setCiclos] = useState(JSON.parse(localStorage.getItem('ciclos')) || []);
+  const [ciclos, setCiclos] = useState([]);
   const [cicloNombre, setCicloNombre] = useState('');
   const [nombreCiclo, setNombreCiclo] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
@@ -49,7 +47,6 @@ function ModalContextProvider({ children }) {
           setMovimientos(res.data.payload);
           getFinalAmount(res);
         }
-        console.log(res);
       })
       .catch(console.log);
   }
@@ -57,7 +54,6 @@ function ModalContextProvider({ children }) {
   function getFinalAmount(res) {
     let ingreso = 0;
     let egreso = 0;
-    console.log(res.data.payload);
     res.data.payload.forEach(movimiento => {
       if (movimiento.type === "Ingreso") {
         ingreso += parseFloat(movimiento.amount);
@@ -69,20 +65,21 @@ function ModalContextProvider({ children }) {
   }
 
   function guardarCiclo() {
-    let fecha = new Date();
-    let day = fecha.getDate();
-    let month = fecha.getMonth();
-    let year = fecha.getFullYear();
-    let hour = fecha.getHours();
-    let minute = fecha.getMinutes();
-    let second = fecha.getSeconds();
-
-    let textFecha = `${day}/${month + 1}/${year} a las ${hour}:${minute}:${second}`;
-    setCiclos([...ciclos, { id: Date.now(), name: cicloNombre, fecha: textFecha, elementos: movimientos }]);
-    console.log(ciclos);
-    setAmounts([]);
+    let ciclo = {
+      name: cicloNombre,
+      date: Date.now(),
+      movimientos: movimientos,
+      adjustment: finalAmount
+    }
+    console.log(user.ciclos);
+    const token = document.cookie.replace('token=', '')
+    axios.post(`http://localhost:8080/ciclos/${user.ciclos}/${user.movimientos}`, { token, ciclo })
+      .then(res => {
+        console.log(res)
+        setLoading(false);
+        getMovements();
+      })
     setNombreCiclo(false);
-    localStorage.setItem('ciclos', JSON.stringify(ciclos));
   }
 
   function logout() {
@@ -97,7 +94,7 @@ function ModalContextProvider({ children }) {
   }
 
   return (
-    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts, guardarCiclo, ciclos, setCicloNombre, nombreCiclo, setNombreCiclo, setIsLogged, isLogged, user, setUser, getUser, getMovements, movimientos, setMovimientos, loading, setLoading, getFinalAmount, logout }}>
+    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts, guardarCiclo, ciclos, setCiclos, setCicloNombre, nombreCiclo, setNombreCiclo, setIsLogged, isLogged, user, setUser, getUser, getMovements, movimientos, setMovimientos, loading, setLoading, getFinalAmount, logout }}>
       {children}
     </ModalContext.Provider>
   )

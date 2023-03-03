@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 function CiclosItem({ ciclo }) {
     return (
-        <Link className='ciclos__item' to={`/ciclos/${ciclo.id}`}>
+        <Link className='ciclos__item' to={`/ciclos/${ciclo.date}`}>
             <h3>{ciclo.name}</h3>
-            <small>{ciclo.fecha}</small>
+            <small>{ciclo.date}</small>
         </Link>
     )
 }
