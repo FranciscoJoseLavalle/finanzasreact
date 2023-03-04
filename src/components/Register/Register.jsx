@@ -4,9 +4,12 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ModalContext } from '../../context/ModalContext';
 import Loader from '../Loader/Loader';
+import useTitle from '../../customHooks/useTitle';
 
 function Register() {
     const { loading, setLoading } = useContext(ModalContext);
+
+    useTitle('Registrarse')
 
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');

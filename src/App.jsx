@@ -18,6 +18,7 @@ import Loader from './components/Loader/Loader';
 function App() {
   const { setUser, setIsLogged, isLogged } = useContext(ModalContext);
   const [loading, setLoading] = useState(false)
+  const [connected, setConnected] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -28,6 +29,7 @@ function App() {
           setLoading(false);
           setIsLogged(false);
         } else {
+          setConnected(true);
           setLoading(false);
           setIsLogged(true);
           setUser(res.data.payload)
@@ -40,15 +42,26 @@ function App() {
     <BrowserRouter>
       <NavBar />
       {loading
-        ? <Loader />
+        ? <>
+          {connected
+            ? null
+            : <p style={{
+              textAlign: 'center',
+              padding: '2rem 0',
+              paddingBottom: '1rem'
+            }}>
+              Aguarde unos instantes, el servidor es gratuito y demora en iniciar...
+            </p>}
+          <Loader />
+        </>
         : <>
           <Routes>
-            <Route path='/' element={isLogged ? <Historial /> : <Login />} />
+            <Route path='/' element={isLogged ? <Historial /> : <Login connected={connected} />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/ciclos' element={isLogged ? <Ciclos /> : <Login />} />
+            <Route path='/ciclos' element={isLogged ? <Ciclos /> : <Login connected={connected} />} />
             <Route path='/ciclos/:showCiclo' element={<CiclosIndividuales />} />
             <Route path='/categorias' element={<Categorias />} />
-            <Route path='/grafico' element={isLogged ? <Grafico /> : <Login />} />
+            <Route path='/grafico' element={isLogged ? <Grafico /> : <Login connected={connected} />} />
             <Route path='/presupuesto' element={<Presupuesto />} />
 
             <Route path='/*' element={<Navigate to='/' replace />} />

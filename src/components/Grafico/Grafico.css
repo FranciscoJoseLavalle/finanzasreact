@@ -1,0 +1,11 @@
+.main__grafico {
+    width: 50%;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+
+    .main__grafico {
+        width: 80%;
+    }
+}

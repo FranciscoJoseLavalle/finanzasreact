@@ -23,6 +23,7 @@ function AddForm() {
         const montoInput = document.querySelector('.inputMonto');
         const detalleInput = document.querySelector('.inputDetalle');
         const select = document.querySelector('.main__form-select');
+        const categoriaInput = document.querySelector('#categoria');
         const form = document.querySelector('.addForm');
 
         amount < 0.01 || amount === '' ? montoInput.classList.add('inputWrong') : montoInput.classList.remove('inputWrong');
@@ -37,7 +38,13 @@ function AddForm() {
         } else {
             select.classList.remove('inputWrong');
         }
-        if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada') {
+        if (categoria === '-' || categoria === 'nada') {
+            categoriaInput && categoriaInput.classList.add('inputWrong')
+
+        } else {
+            categoriaInput && categoriaInput.classList.remove('inputWrong')
+        }
+        if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada' && (type === 'Ingreso' || (categoria !== '-' && categoria !== 'nada'))) {
             setLoading(true);
             let movement = {
                 detail,
@@ -67,6 +74,7 @@ function AddForm() {
         const montoInput = document.querySelector('.inputMonto');
         const detalleInput = document.querySelector('.inputDetalle');
         const select = document.querySelector('.main__form-select');
+        const categoriaInput = document.querySelector('#categoria');
         const form = document.querySelector('.addForm');
 
         if (amount < 0.01 || amount === '') {
@@ -84,7 +92,12 @@ function AddForm() {
         } else {
             select.classList.remove('inputWrong');
         }
-        if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada') {
+        if (categoria === '-' || categoria === 'nada') {
+            categoriaInput && categoriaInput.classList.add('inputWrong')
+        } else {
+            categoriaInput && categoriaInput.classList.remove('inputWrong')
+        }
+        if (amount > 0.01 && amount !== '' && detail !== '' && !(/^\s/.test(detail)) && type !== 'nada'(type === 'Ingreso' || (categoria !== '-' && categoria !== 'nada'))) {
             setLoading(true);
             movimientos.forEach(el => {
                 if (el.date === id) {

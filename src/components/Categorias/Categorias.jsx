@@ -14,8 +14,10 @@ import tarjeta from '../../assets/img/tarjeta.png';
 import bus from '../../assets/img/bus.png';
 import restaurant from '../../assets/img/restaurant.png';
 import CategoriasItems from '../CategoriasItems/CategoriasItems';
+import useTitle from '../../customHooks/useTitle';
 
 function Categorias() {
+  useTitle('Categorias');
 
   let categorias = [
     { tipo: 'Comida', texto: "Alimentación básica del individuo o grupo familiar.", ejemplo: 'Ej: Compra en tienda, almacén y/o supermercado.', img: comida },

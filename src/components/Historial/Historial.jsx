@@ -9,9 +9,16 @@ import HistorialList from '../HistorialList/HistorialList';
 import HistorialSelect from '../HistorialSelect/HistorialSelect';
 import Loader from '../Loader/Loader';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
+import useTitle from '../../customHooks/useTitle';
 
 function Historial() {
     const { modal, amounts, finalAmount, setAmounts, showAmounts, setShowAmounts, guardarCiclo, setCicloNombre, nombreCiclo, setNombreCiclo, setMovimientos, movimientos, user, loading, setLoading, getFinalAmount, getMovements } = useContext(ModalContext);
+
+    useTitle("Historial")
+
+    const [hi, setHi] = useState('')
 
     function deleteItem(id) {
         setLoading(true);
@@ -50,6 +57,15 @@ function Historial() {
     }
 
     useEffect(() => {
+        let hour = moment().hours();
+        if (hour > 6 && hour < 12) {
+            setHi('Buenos días')
+        } else if (hour > 20) {
+            setHi('Buenas noches')
+        }
+        if (hour > 12 && hour < 20) {
+            setHi('Buenas tardes')
+        }
         setLoading(true);
         const token = document.cookie.replace('token=', '')
         axios.post("http://localhost:8080/pruebaDatos", { token })
@@ -77,7 +93,23 @@ function Historial() {
     }
 
     return (
+        // <main className='main__provisorio'>
         <section className="main__historial">
+            <div className='saludoContainer'>
+                <p>¡<b>{hi}</b>, {user.name}!</p>
+            </div>
+            <div className='simpleNavContainer'>
+                <nav className='simpleNav'>
+                    <Link to='/grafico'>
+                        <img src="img/piechart.png" alt="Gráfico" />
+                        <small>Gráfico</small>
+                    </Link>
+                    <Link to='/ciclos'>
+                        <img src="img/cicle.png" alt="Ciclos" />
+                        <small>Ciclos</small>
+                    </Link>
+                </nav>
+            </div>
             <div className="historial-cont">
                 <h2>Historial</h2>
                 {/* <input type="text" placeholder='Buscar...' onChange={filterAmounts}/> */}
@@ -108,6 +140,7 @@ function Historial() {
             {modal ? <AddForm /> : <></>}
             <OpenModal />
         </section>
+        // </main>
     )
 }
 

@@ -1,3 +1,7 @@
+/* .main__provisorio {
+    display: flex;
+    justify-content: center;
+} */
 .main__historial {
     margin-top: .5rem;
     display: flex;
@@ -6,7 +10,9 @@
     justify-content: center;
     width: 100%;
     gap: .4rem;
+    margin: auto;
 }
+
 .historial-cont {
     display: flex;
     flex-direction: column;
@@ -14,6 +20,7 @@
     justify-content: center;
     width: 50%;
 }
+
 .main__historial-select {
     width: 100%;
     padding: .5rem;
@@ -22,27 +29,27 @@
     background-color: #fff;
     border-radius: .3rem;
 }
-@media (max-width: 768px) {
-    .historial-cont {
-        width: 80%;
-    }
-}
+
+
 .nombreCiclo-cont {
     display: flex;
     flex-direction: column;
     gap: .5rem;
 }
+
 .nombreCiclo-cont div {
     display: flex;
     flex-direction: column;
     gap: .2rem;
 }
+
 .nombreCiclo-cont input {
     padding: .5rem;
     border: .01rem solid #999;
     border-radius: .3rem;
     outline: none;
 }
+
 .nombreCiclo-cont button {
     padding: .5rem;
     background-color: #78f;
@@ -52,20 +59,24 @@
     border-radius: .3rem;
     transition: background-color .2s;
 }
+
 .montos {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
 }
+
 .montos img {
     width: 1.5rem;
     height: 1.5rem;
 }
+
 .imgCont {
     display: flex;
     gap: .6rem;
 }
+
 .finalizarCiclo {
     border: solid #f00 .01rem;
     background-color: #fff;
@@ -76,7 +87,55 @@
     color: #f00;
     transition: .2s;
 }
+
 .finalizarCiclo:hover {
     background-color: #f00;
     color: #fff;
+}
+
+.simpleNavContainer {
+    width: 50%;
+    padding: .25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.simpleNav {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+}
+
+.simpleNav a {
+    background-color: #fff;
+    box-shadow: #ccc 0 0 15px;
+    padding: .6rem;
+    border-radius: .35rem;
+    width: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .25rem;
+}
+
+.simpleNav img {
+    width: 100%;
+}
+.simpleNav small {
+    color: #222;
+}
+
+@media (max-width: 768px) {
+
+    .historial-cont,
+    .simpleNavContainer {
+        width: 80%;
+    }
+}
+.saludoContainer {
+    text-align: left;
+    padding: .75rem 0;
+    width: 80%;
 }

@@ -65,6 +65,7 @@ function ModalContextProvider({ children }) {
   }
 
   function guardarCiclo() {
+    setLoading(true);
     let ciclo = {
       name: cicloNombre,
       date: Date.now(),

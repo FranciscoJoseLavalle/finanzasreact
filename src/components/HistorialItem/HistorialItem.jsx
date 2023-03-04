@@ -17,7 +17,7 @@ function HistorialItem({ amount, deleteItem }) {
           color: amount.type === "Ingreso" ? "green" : "#222",
           fontWeight: 600
         }}>$ {parseFloat(amount.amount).toLocaleString()}</p>
-        <small>{moment(amount.date).format('DD/MM/YYYY h:mm:ss')}</small>
+        <small>{moment(amount.date).format('DD/MM/YYYY H:mm:ss')}</small>
       </div>
       <div className='itemImg'>
         <img src={editIMG} alt="" onClick={() => edit(amount.date)} />

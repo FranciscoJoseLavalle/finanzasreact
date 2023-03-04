@@ -4,16 +4,28 @@ import { useContext, useEffect, useState } from 'react';
 import { ModalContext } from '../../context/ModalContext';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader/Loader';
+import useTitle from '../../customHooks/useTitle';
 
-function Login() {
+function Login({ connected }) {
     const { setIsLogged, isLogged, getUser, setUser, user, setLoading, loading } = useContext(ModalContext);
+    useTitle('Iniciar sesión')
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [wrongUser, setWrongUser] = useState(false);
+
+    useEffect(() => {
+        const emailInput = document.querySelector('#email');
+        if (emailInput) {
+            emailInput.value = email;
+        }
+    }, [wrongUser])
+
 
     function formSubmit(e) {
         e.preventDefault();
         setLoading(true);
+        setWrongUser(false);
         const emailInput = document.querySelector('#email');
         const passwordInput = document.querySelector('#password');
 
@@ -42,7 +54,7 @@ function Login() {
             }
             axios.post("http://localhost:8080/api/sessions/login", params)
                 .then(res => {
-                    console.log(res);
+                    console.log(res.response);
                     if (res.data.status === "success") {
                         document.cookie = `token=${res.data.payload}; max-age=${60 * 24}; path=/; samesite=strict`
                         setIsLogged(true);
@@ -54,7 +66,8 @@ function Login() {
                     console.log(res);
                     if (res.response.data.status === 'error') {
                         setLoading(false);
-                        setEmail('')
+                        setWrongUser(true);
+                        // setEmail('')
                         setPassword('')
                     }
                 })
@@ -79,6 +92,7 @@ function Login() {
                 ? <Loader />
                 : <form className="form" onSubmit={(e) => formSubmit(e)}>
                     <h2>Iniciar sesión</h2>
+                    {wrongUser ? <p>Algún dato ingresado es incorrecto. Vuelva a intentarlo.</p> : null}
                     <div>
                         <label htmlFor="email">Correo electrónico</label>
                         <input type="email" placeholder='Email' id='email' onChange={(e) => setEmail(e.target.value)} />
