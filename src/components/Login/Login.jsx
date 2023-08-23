@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader';
 import useTitle from '../../customHooks/useTitle';
 
 function Login({ connected }) {
-    const { setIsLogged, isLogged, getUser, setUser, user, setLoading, loading } = useContext(ModalContext);
+    const { setIsLogged, isLogged, getUser, setUser, user, setLoading, loading, API_URL } = useContext(ModalContext);
     useTitle('Iniciar sesión')
 
     const [email, setEmail] = useState('');
@@ -52,7 +52,7 @@ function Login({ connected }) {
                 "email": email,
                 "password": password
             }
-            axios.post("http://localhost:8080/api/sessions/login", params)
+            axios.post(`${API_URL}/api/sessions/login`, params)
                 .then(res => {
                     console.log(res.response);
                     if (res.data.status === "success") {
@@ -79,7 +79,7 @@ function Login({ connected }) {
     const probarDatos = (e) => {
         e.preventDefault();
         const token = document.cookie.replace('token=', '')
-        axios.post("http://localhost:8080/pruebaDatos", { token })
+        axios.post(`${API_URL}/pruebaDatos`, { token })
             .then(res => {
                 console.log(res);
             })

@@ -8,12 +8,12 @@ import Loader from '../Loader/Loader';
 import './Ciclos.css';
 
 function Ciclos() {
-    const { user, setCiclos, ciclos, setLoading, loading } = useContext(ModalContext);
+    const { user, setCiclos, ciclos, setLoading, loading, API_URL } = useContext(ModalContext);
     useTitle('Ciclos')
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`http://localhost:8080/ciclos/${user.ciclos}`)
+        axios.get(`${API_URL}/ciclos/${user.ciclos}`)
             .then(res => {
                 if (res.data.status === "success") {
                     setCiclos(res.data.payload.ciclos)
@@ -27,7 +27,7 @@ function Ciclos() {
     function deleteCiclo(date) {
         setLoading(true);
         const token = document.cookie.replace('token=', '')
-        axios.delete(`http://localhost:8080/ciclos/${user.ciclos}`, { data: { token, date: date } }, {
+        axios.delete(`${API_URL}/ciclos/${user.ciclos}`, { data: { token, date: date } }, {
 
         })
             .then(res => {

@@ -19,6 +19,9 @@ function ModalContextProvider({ children }) {
   const [movimientos, setMovimientos] = useState([])
   const [loading, setLoading] = useState(false)
 
+  // const API_URL = "https://giddy-honeysuckle-fuschia.glitch.me";
+  const API_URL = "http://localhost:8080";
+
   function edit(id) {
     setId(id)
     setModal(true);
@@ -27,7 +30,7 @@ function ModalContextProvider({ children }) {
 
   function getUser() {
     const token = document.cookie.replace('token=', '')
-    axios.post("http://localhost:8080/pruebaDatos", { token })
+    axios.post(`${API_URL}/pruebaDatos`, { token })
       .then(res => {
         if (res.data.status === 'error') {
           return null
@@ -40,7 +43,7 @@ function ModalContextProvider({ children }) {
   }
 
   function getMovements() {
-    axios.get(`http://localhost:8080/movements/${user.movimientos}`,)
+    axios.get(`${API_URL}/movements/${user.movimientos}`,)
       .then(res => {
         if (res.data.status === 'success') {
           setLoading(false);
@@ -74,7 +77,7 @@ function ModalContextProvider({ children }) {
     }
     console.log(user.ciclos);
     const token = document.cookie.replace('token=', '')
-    axios.post(`http://localhost:8080/ciclos/${user.ciclos}/${user.movimientos}`, { token, ciclo })
+    axios.post(`${API_URL}/ciclos/${user.ciclos}/${user.movimientos}`, { token, ciclo })
       .then(res => {
         console.log(res)
         setLoading(false);
@@ -84,7 +87,7 @@ function ModalContextProvider({ children }) {
   }
 
   function logout() {
-    axios.post("http://localhost:8080/api/sessions/logout")
+    axios.post(`${API_URL}/api/sessions/logout`)
       .then(res => {
         if (res.data.status === "success") {
           document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
@@ -95,7 +98,7 @@ function ModalContextProvider({ children }) {
   }
 
   return (
-    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts, guardarCiclo, ciclos, setCiclos, setCicloNombre, nombreCiclo, setNombreCiclo, setIsLogged, isLogged, user, setUser, getUser, getMovements, movimientos, setMovimientos, loading, setLoading, getFinalAmount, logout }}>
+    <ModalContext.Provider value={{ modal, setModal, amounts, setAmounts, finalAmount, editItem, setEditItem, edit, id, setId, setAmountWithoutFilter, amountWithoutFilter, showAmounts, setShowAmounts, guardarCiclo, ciclos, setCiclos, setCicloNombre, nombreCiclo, setNombreCiclo, setIsLogged, isLogged, user, setUser, getUser, getMovements, movimientos, setMovimientos, loading, setLoading, getFinalAmount, logout, API_URL }}>
       {children}
     </ModalContext.Provider>
   )

@@ -10,11 +10,11 @@ import moment from 'moment';
 
 function CiclosIndividuales() {
     let { showCiclo } = useParams();
-    const { ciclos, setCiclos, user, loading, setLoading } = useContext(ModalContext);
+    const { ciclos, setCiclos, user, loading, setLoading, API_URL } = useContext(ModalContext);
     useEffect(() => {
         setLoading(true);
         if (user.ciclos) {
-            axios.get(`http://localhost:8080/ciclos/${user.ciclos}`)
+            axios.get(`${API_URL}/ciclos/${user.ciclos}`)
                 .then(res => {
                     console.log(res);
                     if (res.data.status === "success") {

@@ -123,19 +123,22 @@
 .simpleNav img {
     width: 100%;
 }
+
 .simpleNav small {
     color: #222;
+}
+
+.saludoContainer {
+    text-align: left;
+    padding: .75rem 0;
+    width: 50%;
 }
 
 @media (max-width: 768px) {
 
     .historial-cont,
-    .simpleNavContainer {
+    .simpleNavContainer,
+    .saludoContainer {
         width: 80%;
     }
-}
-.saludoContainer {
-    text-align: left;
-    padding: .75rem 0;
-    width: 80%;
 }

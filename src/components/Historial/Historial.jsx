@@ -14,7 +14,7 @@ import moment from 'moment';
 import useTitle from '../../customHooks/useTitle';
 
 function Historial() {
-    const { modal, amounts, finalAmount, setAmounts, showAmounts, setShowAmounts, guardarCiclo, setCicloNombre, nombreCiclo, setNombreCiclo, setMovimientos, movimientos, user, loading, setLoading, getFinalAmount, getMovements } = useContext(ModalContext);
+    const { modal, amounts, finalAmount, setAmounts, showAmounts, setShowAmounts, guardarCiclo, setCicloNombre, nombreCiclo, setNombreCiclo, setMovimientos, movimientos, user, loading, setLoading, getFinalAmount, getMovements, API_URL } = useContext(ModalContext);
 
     useTitle("Historial")
 
@@ -23,7 +23,7 @@ function Historial() {
     function deleteItem(id) {
         setLoading(true);
         const token = document.cookie.replace('token=', '')
-        axios.delete(`http://localhost:8080/movements/${user.movimientos}`, { data: { token, id: id } }, {
+        axios.delete(`${API_URL}/movements/${user.movimientos}`, { data: { token, id: id } }, {
 
         })
             .then(res => {
@@ -40,7 +40,7 @@ function Historial() {
         setLoading(true);
         if (e.target.value !== 'nada') {
             console.log(e.target.value);
-            axios.get(`http://localhost:8080/movements/${user.movimientos}/${e.target.value}`)
+            axios.get(`${API_URL}/movements/${user.movimientos}/${e.target.value}`)
                 .then(res => {
                     if (res.data.status === 'success') {
                         console.log(res.data.payload);
@@ -58,17 +58,17 @@ function Historial() {
 
     useEffect(() => {
         let hour = moment().hours();
-        if (hour > 6 && hour < 12) {
+        if (hour >= 6 && hour <= 12) {
             setHi('Buenos días')
-        } else if (hour > 20) {
+        } else if (hour > 20 || hour < 6) {
             setHi('Buenas noches')
         }
-        if (hour > 12 && hour < 20) {
+        if (hour >= 12 && hour <= 20) {
             setHi('Buenas tardes')
         }
         setLoading(true);
         const token = document.cookie.replace('token=', '')
-        axios.post("http://localhost:8080/pruebaDatos", { token })
+        axios.post(`${API_URL}/pruebaDatos`, { token })
             .then(res => {
                 if (res.data.status === 'success') {
                     getMovements2(res.data.payload.movimientos);
@@ -80,7 +80,7 @@ function Historial() {
     }, [])
 
     const getMovements2 = (mid) => {
-        axios.get(`http://localhost:8080/movements/${mid}`,)
+        axios.get(`${API_URL}/movements/${mid}`,)
             .then(res => {
                 if (res.data.status === 'success') {
                     setLoading(false);
@@ -96,7 +96,7 @@ function Historial() {
         // <main className='main__provisorio'>
         <section className="main__historial">
             <div className='saludoContainer'>
-                <p>¡<b>{hi}</b>, {user.name}!</p>
+                <p><b>¡{hi}</b>, {user.name}!</p>
             </div>
             <div className='simpleNavContainer'>
                 <nav className='simpleNav'>

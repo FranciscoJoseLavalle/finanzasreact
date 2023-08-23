@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader';
 import useTitle from '../../customHooks/useTitle';
 
 function Register() {
-    const { loading, setLoading } = useContext(ModalContext);
+    const { loading, setLoading, API_URL } = useContext(ModalContext);
 
     useTitle('Registrarse')
 
@@ -72,7 +72,7 @@ function Register() {
                 "email": email,
                 "password": password
             })
-            axios.post("http://localhost:8080/api/sessions/register", params, {
+            axios.post(`${API_URL}/api/sessions/register`, params, {
                 "headers": {
                     'Content-Type': 'application/json'
                 }

@@ -16,14 +16,14 @@ import axios from 'axios';
 import Loader from './components/Loader/Loader';
 
 function App() {
-  const { setUser, setIsLogged, isLogged } = useContext(ModalContext);
+  const { setUser, setIsLogged, isLogged, API_URL } = useContext(ModalContext);
   const [loading, setLoading] = useState(false)
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     const token = document.cookie.replace('token=', '')
-    axios.post("http://localhost:8080/pruebaDatos", { token })
+    axios.post(`${API_URL}/pruebaDatos`, { token })
       .then(res => {
         if (res.data.status === 'error') {
           setLoading(false);

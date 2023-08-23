@@ -6,7 +6,7 @@ import SelectCategoria from '../SelectCategoria/SelectCategoria';
 import './AddForm.css';
 
 function AddForm() {
-    const { setAmounts, amounts, setModal, editItem, id, amountWithoutFilter, setAmountWithoutFilter, user, getMovements, setLoading, movimientos } = useContext(ModalContext);
+    const { setAmounts, amounts, setModal, editItem, id, amountWithoutFilter, setAmountWithoutFilter, user, getMovements, setLoading, movimientos, API_URL } = useContext(ModalContext);
 
     const [detail, setDetail] = useState('');
     const [amount, setAmount] = useState('');
@@ -54,7 +54,7 @@ function AddForm() {
                 categoria
             }
             const token = document.cookie.replace('token=', '')
-            axios.post(`http://localhost:8080/movements/${user.movimientos}`, { token, movement })
+            axios.post(`${API_URL}/movements/${user.movimientos}`, { token, movement })
                 .then(res => {
                     console.log(res)
                     setLoading(false);
@@ -110,7 +110,7 @@ function AddForm() {
                     }
 
                     const token = document.cookie.replace('token=', '')
-                    axios.put(`http://localhost:8080/movements/${user.movimientos}`, { token, movement })
+                    axios.put(`${API_URL}/movements/${user.movimientos}`, { token, movement })
                         .then(res => {
                             console.log(res)
                             setLoading(false);
